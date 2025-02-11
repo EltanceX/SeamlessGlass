@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Engine">
+      <HintPath>E:\sc\2.4 Rebuild\1.8-5\survivalcraft-api\Survivalcraft\bin\Debug\net9.0-windows\win-x64\Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="EntitySystem">
+      <HintPath>E:\sc\2.4 Rebuild\1.8-5\survivalcraft-api\Survivalcraft\bin\Debug\net9.0-windows\win-x64\EntitySystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Survivalcraft">
+      <HintPath>E:\sc\2.4 Rebuild\1.8-5\survivalcraft-api\Survivalcraft\bin\Debug\net9.0-windows\win-x64\Survivalcraft.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

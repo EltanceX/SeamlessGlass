@@ -1,0 +1,327 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "SeamlessGlass/1.0.0": {
+        "dependencies": {
+          "Engine": "1.0.0.0",
+          "EntitySystem": "1.0.0.0",
+          "Survivalcraft": "2.4.0.0"
+        },
+        "runtime": {
+          "SeamlessGlass.dll": {}
+        }
+      },
+      "Engine/1.0.0.0": {
+        "runtime": {
+          "Engine.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "EntitySystem/1.0.0.0": {
+        "runtime": {
+          "EntitySystem.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Survivalcraft/2.4.0.0": {
+        "runtime": {
+          "Survivalcraft.dll": {
+            "assemblyVersion": "2.4.0.0",
+            "fileVersion": "2.4.0.0"
+          }
+        }
+      },
+      "Silk.NET.Windowing.Common/2.22.0.0": {
+        "runtime": {
+          "Silk.NET.Windowing.Common.dll": {
+            "assemblyVersion": "2.22.0.0",
+            "fileVersion": "2.22.0.0"
+          }
+        }
+      },
+      "Silk.NET.Input.Common/2.22.0.0": {
+        "runtime": {
+          "Silk.NET.Input.Common.dll": {
+            "assemblyVersion": "2.22.0.0",
+            "fileVersion": "2.22.0.0"
+          }
+        }
+      },
+      "Silk.NET.Maths/2.22.0.0": {
+        "runtime": {
+          "Silk.NET.Maths.dll": {
+            "assemblyVersion": "2.22.0.0",
+            "fileVersion": "2.22.0.0"
+          }
+        }
+      },
+      "Silk.NET.Core/2.22.0.0": {
+        "runtime": {
+          "Silk.NET.Core.dll": {
+            "assemblyVersion": "2.22.0.0",
+            "fileVersion": "2.22.0.0"
+          }
+        }
+      },
+      "SixLabors.ImageSharp/3.0.0.0": {
+        "runtime": {
+          "SixLabors.ImageSharp.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.1.6.0"
+          }
+        }
+      },
+      "NAudio.Flac/1.0.3.0": {
+        "runtime": {
+          "NAudio.Flac.dll": {
+            "assemblyVersion": "1.0.3.0",
+            "fileVersion": "1.0.3.0"
+          }
+        }
+      },
+      "NAudio.Core/2.2.1.0": {
+        "runtime": {
+          "NAudio.Core.dll": {
+            "assemblyVersion": "2.2.1.0",
+            "fileVersion": "2.2.1.0"
+          }
+        }
+      },
+      "NVorbis/0.10.5.0": {
+        "runtime": {
+          "NVorbis.dll": {
+            "assemblyVersion": "0.10.5.0",
+            "fileVersion": "0.10.5.0"
+          }
+        }
+      },
+      "Silk.NET.OpenGLES/2.22.0.0": {
+        "runtime": {
+          "Silk.NET.OpenGLES.dll": {
+            "assemblyVersion": "2.22.0.0",
+            "fileVersion": "2.22.0.0"
+          }
+        }
+      },
+      "Silk.NET.OpenAL/2.22.0.0": {
+        "runtime": {
+          "Silk.NET.OpenAL.dll": {
+            "assemblyVersion": "2.22.0.0",
+            "fileVersion": "2.22.0.0"
+          }
+        }
+      },
+      "NLayer.NAudioSupport/1.4.0.0": {
+        "runtime": {
+          "NLayer.NAudioSupport.dll": {
+            "assemblyVersion": "1.4.0.0",
+            "fileVersion": "1.4.0.0"
+          }
+        }
+      },
+      "Jint/4.2.0.0": {
+        "runtime": {
+          "Jint.dll": {
+            "assemblyVersion": "4.2.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Acornima/1.1.1.0": {
+        "runtime": {
+          "Acornima.dll": {
+            "assemblyVersion": "1.1.1.0",
+            "fileVersion": "1.1.1.0"
+          }
+        }
+      },
+      "Tomlyn/0.18.0.0": {
+        "runtime": {
+          "Tomlyn.dll": {
+            "assemblyVersion": "0.18.0.0",
+            "fileVersion": "0.18.0.0"
+          }
+        }
+      },
+      "ImeSharp/1.0.0.0": {
+        "runtime": {
+          "ImeSharp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "TextCopy/1.0.0.0": {
+        "runtime": {
+          "TextCopy.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.DotNet.PlatformAbstractions/3.1.6.0": {
+        "runtime": {
+          "Microsoft.DotNet.PlatformAbstractions.dll": {
+            "assemblyVersion": "3.1.6.0",
+            "fileVersion": "3.100.620.31604"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyModel/8.0.0.0": {
+        "runtime": {
+          "Microsoft.Extensions.DependencyModel.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        }
+      },
+      "NLayer/1.15.0.0": {
+        "runtime": {
+          "NLayer.dll": {
+            "assemblyVersion": "1.15.0.0",
+            "fileVersion": "1.15.0.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/7.0.0.0": {
+        "runtime": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SeamlessGlass/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Engine/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EntitySystem/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Survivalcraft/2.4.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Silk.NET.Windowing.Common/2.22.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Silk.NET.Input.Common/2.22.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Silk.NET.Maths/2.22.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Silk.NET.Core/2.22.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SixLabors.ImageSharp/3.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NAudio.Flac/1.0.3.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NAudio.Core/2.2.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NVorbis/0.10.5.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Silk.NET.OpenGLES/2.22.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Silk.NET.OpenAL/2.22.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NLayer.NAudioSupport/1.4.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Jint/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Acornima/1.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tomlyn/0.18.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ImeSharp/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TextCopy/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.DotNet.PlatformAbstractions/3.1.6.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.DependencyModel/8.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "NLayer/1.15.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/7.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

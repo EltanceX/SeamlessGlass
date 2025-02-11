@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Engine</name>
+    </assembly>
+    <members>
+        <member name="M:Engine.Audio.Mixer.CheckALErrorFull">
+            <summary>
+            完整检查 OpenAL 是否可用和有无问题
+            </summary>
+            <returns>如果出错返回真</returns>
+        </member>
+        <member name="M:Engine.Audio.Sound.InternalPlay(Engine.Vector3)">
+            <summary>
+            在指定位置播放音频
+            </summary>
+            <param name="direction">相对于玩家的相对位置</param>
+        </member>
+        <member name="M:Engine.Graphics.FlatBatch3D.QueueSphere(Engine.Vector3,System.Single,System.Int32,System.Int32,Engine.Color)">
+            <summary>
+            绘制球
+            </summary>
+        </member>
+        <member name="M:Engine.Graphics.FlatBatch3D.QueueSphereWithLines(Engine.Vector3,Engine.Color,System.Single,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            绘制球线框
+            </summary>
+            <param name="center">球心</param>
+            <param name="radius">半径</param>
+            <param name="longitudeLines">经度线</param>
+            <param name="latitudeLines">纬度线</param>
+            <param name="draw">0表示全部绘制，1表示只绘制纬线球，2表示只绘制经线球</param>
+        </member>
+        <member name="M:Engine.Graphics.FlatBatch3D.QueueCircle(Engine.Vector3,System.Single,System.Int32,Engine.Color,System.Boolean)">
+            <summary>
+            绘制圆
+            </summary>
+        </member>
+        <member name="M:Engine.Media.BitmapFont.Initialize(System.IO.Stream,System.IO.Stream,System.Nullable{Engine.Vector2})">
+            <summary>
+            纹理图
+            </summary>
+            <param name="TextureStream">图片文件的输入流</param>
+            <param name="GlyphsStream">位图数据的输入流</param>
+        </member>
+        <member name="M:Engine.Media.Flac.FlacStreamingSource.Duplicate">
+            <summary>
+            复制出一个新的流
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Engine.Media.Mp3.Mp3StreamingSource.Duplicate">
+            <summary>
+            复制出一个新的流
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Engine.Media.Ogg.OggStreamingSource.Duplicate">
+            <summary>
+            复制出一个新的流
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Engine.RunPath.GetOperatingPath">
+             <summary>
+            获取实际运行路径 
+             </summary>
+        </member>
+        <member name="M:Engine.RunPath.GetExecutablePath">
+            <summary>
+            获取 EXE 或 dll 所在路径(包含文件自身路径)
+            </summary>
+        </member>
+        <member name="M:Engine.RunPath.GetEntryPath">
+            <summary>
+            获取运行入口路径(用命令行或者其他程序调用时调用者目录)
+            </summary>
+        </member>
+        <member name="M:Engine.RunPath.GetEnvironmentPath">
+            <summary>
+            获取环境变量 path 多个路径用分号分隔
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,2441 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Survivalcraft</name>
+    </assembly>
+    <members>
+        <member name="F:Game.ComponentFactors.OtherFactors">
+            <summary>
+            模组如果有自定义的Factors，可以使用这个OtherFactors。例如使用OtherFactors["AttackRate"]来定义攻击频率。
+            </summary>
+        </member>
+        <member name="F:Game.ComponentFactors.m_strengthFactors">
+            <summary>
+            这四个Factors是可以调整的影响因素
+            </summary>
+        </member>
+        <member name="M:Game.ComponentFactors.Update(System.Single)">
+            <summary>
+            对等级系统的更新进行了调整。
+            第一步是计算上一帧Factors的最终结果，并进行赋值。此时已经经过了所有模组的修改。
+            第二步是GenerateFactors对四个属性进行生成，此时四个m_xxxFactors会拥有初始值。
+            再往后面则是各模组对Factors的增删改。
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="P:Game.ComponentHealth.AttackResilience">
+            <summary>
+            攻击抗性
+            </summary>
+        </member>
+        <member name="P:Game.ComponentHealth.FallResilience">
+            <summary>
+            掉落抗性
+            </summary>
+        </member>
+        <member name="P:Game.ComponentHealth.AttackResilienceFactor">
+            <summary>
+            攻击抗性加成系数
+            </summary>
+        </member>
+        <member name="P:Game.ComponentHealth.FallResilienceFactor">
+            <summary>
+            掉落抗性加成系数
+            </summary>
+        </member>
+        <member name="P:Game.ComponentHealth.FireResilienceFactor">
+            <summary>
+            火焰伤害抗性系数
+            </summary>
+        </member>
+        <member name="P:Game.ComponentHealth.HealFactor">
+            <summary>
+            生命恢复速度系数
+            </summary>
+        </member>
+        <member name="T:Game.ComponentLevel.Factor">
+            <summary>
+            这里的Factor类型从struct改为class，是由于模组在修改Factor的时候，通常是需要修改引用的值。
+            如果是struct则只能复制并修改值，不能修改引用。
+            Description: 在玩家信息面板上显示影响因素的名称，如“未患流感”
+            Value：该影响因素的具体数值
+            Name：该Factor的索引名称，模组使用Name来在m_xxxFactors列表中查找对应的Factor
+            FactorAdditionType：该影响因子是乘算还是加算
+            </summary>
+        </member>
+        <member name="M:Game.ComponentLevel.GenerateStrengthFactors">
+            <summary>
+            生成玩家的所有关于力量的因素
+            </summary>
+        </member>
+        <member name="M:Game.ComponentLevel.GenerateResilienceFactors">
+            <summary>
+            生成玩家所有关于防御的因素
+            </summary>
+        </member>
+        <member name="M:Game.ComponentLevel.GenerateSpeedFactors">
+            <summary>
+            生成玩家所有关于速度的因素
+            </summary>
+        </member>
+        <member name="M:Game.ComponentLevel.GenerateHungerFactors">
+            <summary>
+            生成玩家所有关于饥饿的因素
+            </summary>
+        </member>
+        <member name="P:Game.ComponentModel.ModelOffset">
+            <summary>
+            模型偏移
+            </summary>
+        </member>
+        <member name="P:Game.ComponentModel.Transparent">
+            <summary>
+            模型透明度
+            </summary>
+        </member>
+        <member name="P:Game.ComponentModel.ModelScale">
+            <summary>
+            模型大小缩放
+            </summary>
+        </member>
+        <member name="P:Game.ComponentModel.TextureRoute">
+            <summary>
+            纹理路径
+            </summary>
+        </member>
+        <member name="P:Game.ComponentModel.ModelRoute">
+            <summary>
+            模型路径
+            </summary>
+        </member>
+        <member name="M:Game.ComponentSleep.CanSleep(System.String@)">
+            <summary>
+            为了模组间兼容性，该方法不再建议覆盖。
+            控制睡觉需要的条件，需要通过控制m_conditionsToSleep更改，具体查看Load()中的添加。
+            模组作者可以在自己的Component中添加对应的m_conditionsToSleep
+            </summary>
+            <param name="reason"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Game.Attackment">
+            <summary>
+            The spell "Attackment" is wrong,
+            But it is not recommended to change it because many mods rely on this class.
+            Change of its name will make a lot of mods unavailable.
+            </summary>
+        </member>
+        <member name="M:Game.BasePerspectiveCamera.CalculateBaseProjectionMatrix">
+            <summary>
+            计算基础投影矩阵，创建透视视野
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Game.Block.GetTextureSlotCount(System.Int32)">
+            <summary>
+            设置材质(正方形)单行格子(分割后每个材质)数,对放置后的方块无效
+            </summary>
+            <param name="value">材质(正方形)单行格子(分割后每个材质)数</param>
+        </member>
+        <member name="M:Game.Block.GenerateTerrainVertices(Game.BlockGeometryGenerator,Game.TerrainGeometry,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            生成地形顶点(用于绘制放置的方块)
+            </summary>
+            <param name="generator"></param>
+            <param name="geometry"></param>
+            <param name="value"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+        </member>
+        <member name="M:Game.Block.DrawBlock(Engine.Graphics.PrimitivesRenderer3D,System.Int32,Engine.Color,System.Single,Engine.Matrix@,Game.DrawBlockEnvironmentData)">
+            <summary>
+            绘制方块_用于绘制方块物品形态
+            </summary>
+            <param name="primitivesRenderer"></param>
+            <param name="value"></param>
+            <param name="color"></param>
+            <param name="size"></param>
+            <param name="matrix"></param>
+            <param name="environmentData"></param>
+        </member>
+        <member name="M:Game.Block.GetPlacementValue(Game.SubsystemTerrain,Game.ComponentMiner,System.Int32,Game.TerrainRaycastResult)">
+            <summary>
+            方块放置方向
+            </summary>
+        </member>
+        <member name="F:Game.ClothingData.Mount">
+            <summary>
+            装备
+            </summary>
+        </member>
+        <member name="F:Game.ClothingData.Dismount">
+            <summary>
+            卸载
+            </summary>
+        </member>
+        <member name="F:Game.ClothingData.Update">
+            <summary>
+            更新
+            </summary>
+        </member>
+        <member name="M:Game.Terrain.ReplaceContents(System.Int32,System.Int32)">
+            <summary>
+            方块值的最低10位，替换为目标Content
+            </summary>
+        </member>
+        <member name="M:Game.Terrain.ReplaceContents(System.Int32)">
+            <summary>
+            方块值的最低10位，替换为目标Content(value始终为0时)
+            </summary>
+        </member>
+        <member name="M:Game.PerformanceManager.AddExtraStat(System.String)">
+            <summary>
+            在性能信息下方添加一行信息，需每帧添加，不支持中文
+            </summary>
+        </member>
+        <member name="P:Game.ScreensManager.PreviousScreen">
+            <summary>
+            上一个Screen
+            </summary>
+        </member>
+        <member name="M:Game.SettingsManager.LoadSettings">
+            <summary>
+            文件存在则读取并返回真否则返回假
+            </summary>
+        </member>
+        <member name="F:Game.VersionsManager.PlatformID">
+            <summary>
+            Win32NT:Windows
+            Unix:Linux
+            </summary>
+        </member>
+        <member name="M:Game.BlocksManager.GetBlockIndex(System.String,System.Boolean)">
+            <summary>
+            通过方块名称来获取方块的Index
+            </summary>
+            <param name="BlockName">方块名称</param>
+            <param name="throwIfNotFound">在方块未查找到时是否抛出异常</param>
+            <returns></returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
+        </member>
+        <member name="M:Game.BlocksManager.GetBlockIndex``1(System.Boolean,System.Boolean)">
+            <summary>
+            获取方块的Index
+            </summary>
+            <typeparam name="T">方块类型</typeparam>
+            <param name="throwIfNotFound">在方块没有查找到时是否抛出异常</param>
+            <param name="mustBeInSameType">方块是否要求必须要和目标类型完全一致</param>
+            <returns></returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
+        </member>
+        <member name="M:Game.BlocksManager.GetBlockIndex(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            获取方块的Index
+            </summary>
+            <param name="blockType">方块类型</param>
+            <param name="throwIfNotFound">在方块没有查找到时是否抛出异常</param>
+            <param name="mustBeInSameType">方块是否要求必须要和目标类型完全一致</param>
+            <returns></returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"></exception>
+        </member>
+        <member name="M:Game.BlocksManager.GetBlockGeneral``1(System.Boolean)">
+            <summary>
+            获取一个方块的通用Block类，具有较好的模组兼容稳定性
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="throwIfNotFound"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Game.BlocksManager.GetBlock``1(System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="throwIfNotFound">在方块没有查找到时是否抛出异常</param>
+            <param name="mustBeInSameType">方块是否要求必须要和目标类型完全一致</param>
+            <returns></returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">没有找到对应的方块</exception>
+            <exception cref="T:System.InvalidCastException">有名称相同的方块，但类型不相容</exception>
+        </member>
+        <member name="M:Game.BlocksManager.GetBlock(System.Type,System.Boolean,System.Boolean)">
+            <param name="blockType">方块类型</param>
+            <param name="throwIfNotFound">在方块没有查找到时是否抛出异常</param>
+            <param name="mustBeInSameType">方块是否要求必须要和目标类型完全一致</param>
+            <returns></returns>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException">没有找到对应的方块</exception>
+            <exception cref="T:System.InvalidCastException">有名称相同的方块，但类型不相容</exception>
+        </member>
+        <member name="M:Game.ContentManager.Dispose(System.String)">
+            <summary>
+            可能需要带上文件后缀，即获取名字+获取的后缀
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Game.FastDebugModEntity.GetFiles(System.String,System.Action{System.String,System.IO.Stream})">
+            <summary>
+            获取指定后缀文件列表，带.
+            </summary>
+            <param name="extension"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Game.JsonModelReader">
+             此处基础坐标系为YZX
+             
+            
+        </member>
+        <member name="F:Game.LanguageControl.LanguageTypes">
+            <summary>
+            语言标识符、与相应的CultureInfo
+            </summary>
+        </member>
+        <member name="M:Game.LanguageControl.LName">
+            <returns>当前语言的标识符</returns>
+        </member>
+        <member name="M:Game.LanguageControl.Get(System.String,System.Int32)">
+            <summary>
+            获取在当前语言类名键对应的字符串
+            </summary>
+            <param name="className">类名</param>
+            <param name="key">键</param>
+            <returns>本地化字符串</returns>
+        </member>
+        <member name="M:Game.ModEntity.GetFiles(System.String,System.Action{System.String,System.IO.Stream})">
+            <summary>
+            获取模组的文件时调用。
+            </summary>
+            <param name="extension">文件扩展名</param>
+            <param name="action">参数1文件名参数，2打开的文件流</param>
+        </member>
+        <member name="M:Game.ModEntity.GetFilesAndExist(System.String,System.Action{System.String,System.IO.Stream})">
+            <param name="extension">文件扩展名</param>
+            <param name="action">参数1文件名参数，2打开的文件流</param>
+            <return>列表是否为空</return>
+        </member>
+        <member name="M:Game.ModEntity.GetFile(System.String,System.Action{System.IO.Stream})">
+            <summary>
+            获取指定文件
+            </summary>
+            <param name="filename"></param>
+            <param name="stream">参数1打开的文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:Game.ModEntity.LoadLauguage">
+            <summary>
+            初始化语言包
+            </summary>
+        </member>
+        <member name="M:Game.ModEntity.ModInitialize">
+            <summary>
+            Mod初始化
+            </summary>
+        </member>
+        <member name="M:Game.ModEntity.InitResources">
+            <summary>
+            初始化Content资源
+            </summary>
+        </member>
+        <member name="M:Game.ModEntity.LoadBlocksData">
+            <summary>
+            初始化BlocksData资源
+            </summary>
+        </member>
+        <member name="M:Game.ModEntity.LoadXdb(System.Xml.Linq.XElement@)">
+            <summary>
+            初始化Database数据
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModEntity.LoadClo(Game.ClothingBlock,System.Xml.Linq.XElement@)">
+            <summary>
+            初始化Clothing数据
+            </summary>
+            <param name="block"></param>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModEntity.LoadCr(System.Xml.Linq.XElement@)">
+            <summary>
+            初始化CraftingRecipe
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModEntity.GetAssemblies">
+            <summary>
+            加载mod程序集
+            </summary>
+        </member>
+        <member name="M:Game.ModEntity.CheckDependencies(System.Collections.Generic.List{Game.ModEntity})">
+            <summary>
+            检查依赖项
+            </summary>
+        </member>
+        <member name="M:Game.ModEntity.SaveSettings(System.Xml.Linq.XElement)">
+            <summary>
+            保存设置
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModEntity.LoadSettings(System.Xml.Linq.XElement)">
+            <summary>
+            加载设置
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModEntity.OnBlocksInitalized">
+            <summary>
+            BlocksManager初始化完毕
+            </summary>
+        </member>
+        <member name="M:Game.ModListManager.InspectionModLists(System.String)">
+             <summary>
+            检查文件夹中各个整合包（更新和补充） 
+             </summary>
+             <param name="folderPath">按照系统格式的文件夹路径</param>
+             <returns></returns>
+        </member>
+        <member name="M:Game.ModListManager.AnalysisModList(System.String)">
+             <summary>
+            解析整合包文件 
+            可以用整合包的模组路径代替全局模组路径
+             </summary>
+             <param name="filePath">整合包的路径</param>
+             <returns>整合包的模组路径</returns>
+        </member>
+        <member name="M:Game.ModLoader.__ModInitialize">
+            <summary>
+            当ModLoader类被实例化时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.GetModFiles(System.String,System.Action{System.String,System.IO.Stream},System.Boolean@)">
+            <summary>
+            在加载本模组的资源时触发。
+            注意：模组的dll只能由原版逻辑加载
+            </summary>
+            <param name="extension">准备调用的文件的扩展名</param>
+            <param name="action">执行的操作</param>
+            <param name="skip">跳过SC本体对模组获取文件的执行。由于该方法只会在调用你的模组的资源时触发，所以不必担心兼容性问题。</param>
+        </member>
+        <member name="M:Game.ModLoader.GetModFile(System.String,System.Action{System.IO.Stream},System.Boolean@,System.Boolean@)">
+            <summary>
+            在系统读取本模组的文件时触发
+            注意：modinfo文件、mod图标只能由原版逻辑加载。如果需要修改调整，请自己在模组中重新写一遍加载逻辑
+            </summary>
+            <param name="filename">获取模组文件的名称或前缀</param>
+            <param name="stream">文件流</param>
+            <param name="skip">跳过SC本体对模组获取文件的执行。由于该方法只会在调用你的模组的资源时触发，所以不必担心兼容性问题。</param>
+            <param name="fileFound">在skip过后，返回是否得到文件</param>
+        </member>
+        <member name="M:Game.ModLoader.ModDispose">
+            <summary>
+            Mod被卸载时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.ViewFogColor(System.Single,System.Single,Engine.Color@)">
+            <summary>
+            视图雾颜色调整
+            </summary>
+            <param name="ViewUnderWaterDepth">大于0则表示在水下</param>
+            <param name="ViewUnderMagmaDepth">大于0则表示在岩浆中</param>
+            <param name="viewFogColor">视图雾颜色</param>
+        </member>
+        <member name="M:Game.ModLoader.CalculateLighting(System.Single@)">
+            <summary>
+            方块亮度
+            （黑暗区域亮度）
+            </summary>
+            <param name="brightness">亮度值</param>
+        </member>
+        <member name="M:Game.ModLoader.OnMinerHit(Game.ComponentMiner,Game.ComponentBody,Engine.Vector3,Engine.Vector3,System.Single@,System.Single@,System.Single@,System.Boolean@)">
+            <param name="attackPower">伤害值</param>
+            <param name="playerProbability">玩家命中率</param>
+            <param name="creatureProbability">生物命中率</param>
+        </member>
+        <member name="M:Game.ModLoader.OnMinerDig(Game.ComponentMiner,Game.TerrainRaycastResult,System.Single@,System.Boolean@)">
+            <summary>
+            当人物挖掘时执行
+            </summary>
+            <param name="miner"></param>
+            <param name="raycastResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Game.ModLoader.OnMinerPlace(Game.ComponentMiner,Game.TerrainRaycastResult,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean@)">
+            <summary>
+            当人物放置时执行，若Placed为true则不执行原放置操作
+            </summary>
+            <param name="miner"></param>
+            <param name="raycastResult"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Game.ModLoader.SetRainAndSnowColor(Engine.Color@,Engine.Color@)">
+            <summary>
+            设置雨和雪的颜色
+            </summary>
+            <param name="rainColor"></param>
+            <param name="snowColor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Game.ModLoader.SetFurnitureDesignColor(Game.FurnitureDesign,Game.Block,System.Int32,System.Int32@,Engine.Color@)">
+            <summary>
+            设置家具的颜色
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.AttackPowerParameter(Game.ComponentBody,Game.ComponentCreature,Engine.Vector3,Engine.Vector3,System.Single@,System.Single@,System.Boolean@)">
+            <summary>
+            更改击退和晕眩效果
+            </summary>
+            <param name="target">目标</param>
+            <param name="attacker">攻击者</param>
+            <param name="hitPoint">伤害位置</param>
+            <param name="impulseFactor">击退效果</param>
+            <param name="stunTimeFactor">眩晕时间</param>
+            <param name="recalculate">是否重写眩晕？</param>
+        </member>
+        <member name="M:Game.ModLoader.ClothingProcessSlotItems(Game.ComponentPlayer,Game.Block,System.Int32,System.Int32,System.Int32)">
+            <returns>如果为 true：不移交到下一个 mod 处理</returns>
+        </member>
+        <member name="M:Game.ModLoader.OnEatPickable(Game.ComponentEatPickableBehavior,Game.Pickable,System.Boolean@)">
+            <summary>
+            动物吃掉落物时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnPlayerSpawned(Game.PlayerData.SpawnMode,Game.ComponentPlayer,Engine.Vector3)">
+            <summary>
+            人物出生时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnPlayerDead(Game.PlayerData)">
+            <summary>
+            当人物死亡时执行。在玩家进入世界且玩家处于死亡状态时也会执行
+            可以通过playerData.m_stateMachine.PreviousState == "Playing"，来判断是刚死的，还是加载世界的时候就已经死了。并规避由于退出重进世界造成的“反复死亡判断”bug
+            </summary>
+            <param name="playerData"></param>
+        </member>
+        <member name="M:Game.ModLoader.AttackBody(Game.ComponentBody,Game.ComponentCreature,Engine.Vector3,Engine.Vector3,System.Single@,System.Boolean)">
+            <summary>
+            当Miner执行AttackBody方法时执行
+            </summary>
+            <param name="target"></param>
+            <param name="attacker"></param>
+            <param name="hitPoint"></param>
+            <param name="hitDirection"></param>
+            <param name="attackPower"></param>
+            <param name="isMeleeAttack"></param>
+            <returns>false移交到下一个Mod处理,true不移交</returns>
+        </member>
+        <member name="M:Game.ModLoader.ProcessAttackment(Game.Attackment)">
+            <summary>
+            在攻击时执行
+            </summary>
+            <param name="attackment"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnSetModel(Game.ComponentModel,Engine.Graphics.Model,System.Boolean@)">
+            <summary>
+            当模型对象进行模型设值时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnModelAnimate(Game.ComponentCreatureModel,System.Boolean@)">
+            <summary>
+            当动物模型对象作出动画时执行
+            Skip为是否跳过原动画代码
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.ApplyArmorProtection(Game.ComponentClothing,System.Single,System.Boolean,System.Boolean@)">
+            <summary>
+            计算护甲免伤时执行
+            </summary>
+            <param name="componentClothing"></param>
+            <param name="attackPower">未计算免伤前的伤害</param>
+            <returns>免伤后的伤害，当多个mod都有免伤计算时，取最小值</returns>
+        </member>
+        <member name="M:Game.ModLoader.OnLevelUpdate(Game.ComponentLevel)">
+            <summary>
+            等级组件更新时执行
+            </summary>
+            <param name="level"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnFactorsUpdate(Game.ComponentFactors,System.Single)">
+            <summary>
+            因素控制力量、抗性、速度、饥饿速率组件更新时执行
+            </summary>
+            <param name="componentFactors"></param>
+        </member>
+        <member name="M:Game.ModLoader.GuiUpdate(Game.ComponentGui)">
+            <summary>
+            Gui组件帧更新时执行
+            </summary>
+            <param name="componentGui"></param>
+        </member>
+        <member name="M:Game.ModLoader.GuiDraw(Game.ComponentGui,Game.Camera,System.Int32)">
+            <summary>
+            Gui组件绘制时执行
+            </summary>
+            <param name="componentGui"></param>
+            <param name="camera"></param>
+            <param name="drawOrder"></param>
+        </member>
+        <member name="M:Game.ModLoader.UpdateInput(Game.ComponentInput,Game.WidgetInput)">
+            <summary>
+            更新输入时执行
+            </summary>
+            <param name="componentInput"></param>
+        </member>
+        <member name="M:Game.ModLoader.DrawToScreen(Game.ViewWidget,Game.Widget.DrawContext)">
+            <summary>
+            ViewWidget绘制屏幕时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.ClothingWidgetOpen(Game.ComponentGui,Game.ClothingWidget)">
+            <summary>
+            衣物背包界面被打开时执行
+            </summary>
+            <param name="componentGui"></param>
+            <param name="clothingWidget"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnBlockExploded(Game.SubsystemTerrain,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            当方块被炸掉时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnEntityAdd(GameEntitySystem.Entity)">
+            <summary>
+            当实体被添加时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnEntityRemove(GameEntitySystem.Entity)">
+            <summary>
+            当实体被移除时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.InitializeCreatureTypes(Game.SubsystemCreatureSpawn,System.Collections.Generic.List{Game.SubsystemCreatureSpawn.CreatureType})">
+            <summary>
+            自然生成生物列表初始化时执行
+            </summary>
+            <param name="spawn"></param>
+            <param name="creatureTypes"></param>
+        </member>
+        <member name="M:Game.ModLoader.SpawnEntity(Game.SubsystemSpawn,GameEntitySystem.Entity,Game.SpawnEntityData,System.Boolean@)">
+            <summary>
+            生物出生时执行
+            </summary>
+            <param name="spawn"></param>
+            <param name="entity"></param>
+            <param name="spawnEntityData"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnDespawned(GameEntitySystem.Entity,Game.ComponentSpawn)">
+            <summary>
+            当生物消失时执行
+            </summary>
+            <param name="entity"></param>
+            <param name="componentSpawn"></param>
+        </member>
+        <member name="M:Game.ModLoader.DeadBeforeDrops(Game.ComponentHealth,Game.KillParticleSystem@,System.Boolean@)">
+            <summary>
+            死亡前瞬间执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.TerrainChangeCell(Game.SubsystemTerrain,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean@)">
+            <summary>
+            重定义方块更改方法，Skip为true则不执行原ChangeCell代码
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnCreatureInjure(Game.ComponentHealth,System.Single,Game.ComponentCreature,System.Boolean,System.String,System.Boolean@)">
+            <summary>
+            重定义生物受伤方法，Skip为true则不执行原Injure代码
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.CalculateCreatureInjuryAmount(Game.Injury)">
+            <summary>
+            计算生物收到伤害的量
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnCreatureDying(Game.ComponentHealth,Game.Injury)">
+            <summary>
+            如果动物受到Injure且生命值小于0时，执行操作。
+            如果在函数执行完毕后Health > 0，则取消死亡判定。
+            通常用于各种模组的“不死图腾”机制
+            </summary>
+            <param name="componentHealth"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnCreatureDied(Game.ComponentHealth,Game.Injury,System.Int32@,System.Boolean@)">
+            <summary>
+            在动物收到Injure()且生命值低于0时，执行操作。
+            </summary>
+            <param name="componentHealth"></param>
+        </member>
+        <member name="M:Game.ModLoader.ChangeVisualEffectOnInjury(Game.ComponentHealth,System.Single,System.Single@,System.Boolean@,System.Int32@,System.Single@)">
+            <summary>
+            每帧更新的时候，调整血量带来的视觉效果
+            </summary>
+            <param name="componentHealth"></param>
+            <param name="lastHealth">在扣血之前的生命值</param>
+            <param name="redScreenFactor">玩家的红屏效果</param>
+            <param name="playPainSound">是否播放受伤音效</param>
+            <param name="healthBarFlashCount">玩家血条闪烁次数</param>
+            <param name="creatureModelRedFactor">生物模型变红，为0时不变红，为1时完全红色</param>
+        </member>
+        <member name="M:Game.ModLoader.ChangeSkyColor(Engine.Color,Engine.Vector3,System.Single,System.Int32)">
+            <summary>
+            更改天空颜色
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.SetShaderParameter(Engine.Graphics.Shader,Game.Camera)">
+            <summary>
+            设置着色器参数
+            </summary>
+            <param name="shader"></param>
+            <param name="camera"></param>
+        </member>
+        <member name="M:Game.ModLoader.ModelShaderParameter(Engine.Graphics.Shader,Game.Camera,System.Collections.Generic.List{Game.SubsystemModelsRenderer.ModelData},System.Nullable{System.Single})">
+            <summary>
+            更改模型着色器参数的值
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.SkyDrawExtra(Game.SubsystemSky,Game.Camera)">
+            <summary>
+            天空额外绘制
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.GetMaxInstancesCount">
+            <summary>
+            设置生物最大组件数，多个Mod时取最大
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Game.ModLoader.OnModelRendererDrawExtra(Game.SubsystemModelsRenderer,Game.SubsystemModelsRenderer.ModelData,Game.Camera,System.Nullable{System.Single})">
+            <summary>
+            绘制额外模型数据的方法，如人物头顶的名字
+            </summary>
+            <param name="modelsRenderer"></param>
+            <param name="modelData">正在绘制的模型</param>
+            <param name="camera"></param>
+            <param name="alphaThreshold"></param>
+        </member>
+        <member name="M:Game.ModLoader.SetHitValueParticleSystem(Game.HitValueParticleSystem,Game.Attackment)">
+            <summary>
+            设定伤害粒子参数
+            </summary>
+            <param name="hitValueParticleSystem">粒子</param>
+            <param name="attackment">产生该攻击粒子的攻击，为null表示攻击没有命中</param>
+        </member>
+        <member name="M:Game.ModLoader.OnSaveSpawnData(Game.ComponentSpawn,Game.SpawnEntityData)">
+            <summary>
+            当储存生物数据时
+            </summary>
+            <param name="spawn"></param>
+            <param name="spawnEntityData"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnReadSpawnData(GameEntitySystem.Entity,Game.SpawnEntityData)">
+            <summary>
+            当读取生物数据时
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnTerrainContentsGenerated(Game.TerrainChunk)">
+            <summary>
+            区块地形生成时
+            注意此方法运行在子线程中
+            </summary>
+            <param name="chunk"></param>
+        </member>
+        <member name="M:Game.ModLoader.ToFreeChunks(Game.TerrainUpdater,Game.TerrainChunk,System.Boolean@)">
+            <summary>
+            当区块即将被释放时
+            KeepWorking为True时该区块会继续保持运作，不被释放
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.ToAllocateChunks(Game.TerrainUpdater,Game.TerrainUpdater.UpdateLocation[])">
+            <summary>
+            加载指定区块,如有区块数变动返回 true，否则返回 false
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.SubsystemUpdate(System.Single)">
+            <summary>
+            子系统帧更新时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnProjectLoaded(GameEntitySystem.Project)">
+            <summary>
+            当Project被加载时执行
+            </summary>
+            <param name="project"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnProjectDisposed">
+            <summary>
+            当Project被释放时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.BlocksInitalized">
+            <summary>
+            方块初始化完成时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.BeforeGameLoading(Game.PlayScreen,System.Object)">
+            <summary>
+            存档开始加载前执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnLoadingStart(System.Collections.Generic.List{System.Action})">
+            <summary>
+            加载任务开始时执行
+            在BlocksManager初始化之前
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.OnLoadingFinished(System.Collections.Generic.List{System.Action})">
+            <summary>
+            加载任务结束时执行
+            在BlocksManager初始化之后
+            </summary>
+            <param name="actions"></param>
+        </member>
+        <member name="M:Game.ModLoader.SaveSettings(System.Xml.Linq.XElement)">
+            <summary>
+            游戏设置数据保存时执行
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModLoader.LoadSettings(System.Xml.Linq.XElement)">
+            <summary>
+            游戏设置数据加载时执行
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnXdbLoad(System.Xml.Linq.XElement)">
+            <summary>
+            Xdb文件加载时执行
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModLoader.ProjectXmlLoad(System.Xml.Linq.XElement)">
+            <summary>
+            Project.xml加载时执行
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModLoader.ProjectXmlSave(System.Xml.Linq.XElement)">
+            <summary>
+            Project.xml保存时执行
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnProjectXmlSaved(System.Xml.Linq.XElement)">
+            <summary>
+            Project.xml在所有的Entity和Subsystem保存完毕后再执行
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnCraftingRecipeDecode(System.Collections.Generic.List{Game.CraftingRecipe},System.Xml.Linq.XElement,System.Boolean@)">
+            <summary>
+            配方解码时执行
+            </summary>
+            <param name="element">配方的Xelement</param>
+            <param name="Decoded">是否解码成功，不成功交由下一个Mod处理</param>
+        </member>
+        <member name="M:Game.ModLoader.MatchRecipe(System.String[],System.String[],System.Boolean@)">
+            <summary>
+            配方匹配时执行
+            </summary>
+            <param name="requiredIngredients"></param>
+            <param name="actualIngredient"></param>
+            <param name="Matched">是否匹配成功，不成功交由下一个Mod处理</param>
+        </member>
+        <member name="M:Game.ModLoader.DecodeResult(System.String,System.Boolean@)">
+            <summary>
+            获得解码结果时执行
+            </summary>
+            <param name="result">结果字符串</param>
+            <param name="Decoded">是否解码成功，不成功交由下一个Mod处理</param>
+            <returns></returns>
+        </member>
+        <member name="M:Game.ModLoader.DecodeIngredient(System.String,System.String@,System.Nullable{System.Int32}@,System.Boolean@)">
+            <summary>
+            解码配方
+            </summary>
+            <param name="ingredient"></param>
+            <param name="craftingId"></param>
+            <param name="data"></param>
+            <param name="Decoded">是否解码成功，不成功交由下一个Mod处理</param>
+        </member>
+        <member name="M:Game.ModLoader.OnCameraChange(Game.ComponentPlayer,Game.ComponentGui)">
+            <summary>
+            改变相机模式时执行
+            </summary>
+            <param name="m_componentPlayer"></param>
+            <param name="componentGui"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnCapture">
+            <summary>
+            屏幕截图时执行
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.MenuPlayMusic(System.String@)">
+            <summary>
+            更改主页背景音乐
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.CallNearbyCreaturesHelp(Game.ComponentHerdBehavior,Game.ComponentCreature,System.Single,System.Single,System.Boolean)">
+            <summary>
+            摇人行为
+            </summary>
+            <param name="herdBehavior"></param>
+            <param name="target"></param>
+            <param name="maxRange"></param>
+            <param name="maxChaseTime"></param>
+            <param name="isPersistent"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnTreasureGenerate(Game.SubsystemTerrain,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,System.Boolean@)">
+            <summary>
+            挖掘触发宝物生成时，注意这里能获取到上个Mod生成宝物的情况
+            </summary>
+            <param name="BlockValue">宝物的方块值</param>
+            <param name="Count">宝物数量</param>
+            <param name="IsGenerate">是否继续让其它Mod处理</param>
+        </member>
+        <member name="M:Game.ModLoader.OnWidgetConstruct(Game.Widget@)">
+            <summary>
+            当界面被创建时
+            </summary>
+            <param name="widget"></param>
+        </member>
+        <member name="M:Game.ModLoader.BeforeWidgetDrawItemRender(Game.Widget.DrawItem,System.Boolean@,System.Action@,Engine.Rectangle@,Game.Widget.DrawContext)">
+            <summary>
+            在 DrawItem 被绘制前。
+            </summary>
+            <param name="drawItem">被绘制的 DrawItem。</param>
+            <param name="skipVanillaDraw">是否跳过原版绘制代码。</param>
+            <param name="afterWidgetDraw">原版绘制完成后的回调。</param>
+            <param name="scissorRectangle">绘制时的 ScissorRectangle。</param>
+            <param name="drawContext">绘制上下文。</param>
+        </member>
+        <member name="M:Game.ModLoader.OnDrawItemAssigned(Game.Widget.DrawContext)">
+            <summary>
+            在 DrawItem 排序后。
+            </summary>
+            <param name="drawContext">绘制上下文。</param>
+        </member>
+        <member name="M:Game.ModLoader.OnModalPanelWidgetSet(Game.ComponentGui,Game.Widget,Game.Widget)">
+            <summary>
+            当ModalPanelWidget被设置时执行
+            </summary>
+            <param name="Old"></param>
+            <param name="New"></param>
+        </member>
+        <member name="M:Game.ModLoader.GenerateChunkVertices(Game.TerrainChunk,System.Boolean)">
+            <summary>
+            生成地形顶点时使用
+            </summary>
+            <param name="chunk"></param>
+        </member>
+        <member name="M:Game.ModLoader.GenerateChunkLightSources(Engine.DynamicArray{Game.TerrainUpdater.LightSource},Game.TerrainChunk)">
+            <summary>
+            生成光源数据
+            </summary>
+            <param name="lightSources">光源</param>
+            <param name="chunk">区块</param>
+        </member>
+        <member name="M:Game.ModLoader.CalculateSmoothLight(Game.SubsystemTerrain,Engine.Vector3,System.Single@)">
+            <summary>
+            计算动物模型光照
+            </summary>
+            <param name="subsystemTerrain"></param>
+            <param name="p">动物位置</param>
+            <param name="num">原版计算出来的强度</param>
+        </member>
+        <member name="M:Game.ModLoader.WindowModeChanged(Engine.WindowMode)">
+            <summary>
+            当窗口模式改变时执行。
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.DamageItem(Game.Block,System.Int32,System.Int32,GameEntitySystem.Entity,System.Boolean@)">
+            <summary>
+            在执行DamageItem得到方块掉耐久后，得到的新方块值时执行
+            </summary>
+            <param name="block"></param>
+            <param name="oldValue">方块的旧值</param>
+            <param name="damageCount">损害的耐久量</param>
+            <param name="owner">方块的拥有者</param>
+            <param name="skipVanilla">跳过原版执行逻辑</param>
+            <returns></returns>
+        </member>
+        <member name="M:Game.ModLoader.OnProjectileHitTerrain(Game.Projectile,Game.TerrainRaycastResult,System.Boolean@,System.Boolean@,System.Single@,System.Boolean@,Engine.Vector3@,Engine.Vector3@)">
+            <summary>
+            当射弹击中方块时执行
+            </summary>
+            <param name="projectile">射弹</param>
+            <param name="terrainRaycastResult">地形映射结果</param>
+            <param name="triggerBlocksBehavior">是否执行被命中的方块行为</param>
+            <param name="destroyCell">是否破坏被击中的方块</param>
+            <param name="impactSoundLoudness">发出的声音大小</param>
+            <param name="projectileGetStuck">射弹是否会被卡在方块里面</param>
+            <param name="velocityAfterHit">在击中方块后，射弹的速度</param>
+            <param name="angularVelocityAfterHit">在击中方块后，射弹的角速度</param>
+        </member>
+        <member name="M:Game.ModLoader.OnProjectileHitBody(Game.Projectile,Game.BodyRaycastResult,Game.Attackment@,Engine.Vector3@,Engine.Vector3@,System.Boolean@)">
+            <summary>
+            当射弹击中生物、船只等实体时执行
+            </summary>
+            <param name="projectile">射弹</param>
+            <param name="bodyRaycastResult">实体映射结果</param>
+            <param name="attackment">该射弹命中实体时，执行的攻击。可以调整attackment的攻击力等数据</param>
+            <param name="velocityAfterAttack">在击中方块后，射弹的速度</param>
+            <param name="angularVelocityAfterAttack">在击中方块后，射弹的角速度</param>
+            <param name="ignoreBody">射弹行进直接穿过该生物。射弹后续的更新会忽略该生物，速度和角速度保持原状。攻击照常执行。</param>
+        </member>
+        <member name="M:Game.ModLoader.OnProjectileDraw(Game.Projectile,Game.SubsystemProjectiles,Game.Camera,System.Int32,System.Boolean@,System.Single@,Engine.Color@)">
+            <summary>
+            绘制射弹的时候执行
+            </summary>
+            <param name="projectile">射弹</param>
+            <param name="subsystemProjectiles">该子系统，可以从中获取项目和其他子系统</param>
+            <param name="camera"></param>
+            <param name="drawOrder"></param>
+            <param name="shouldDrawBlock">是否执行原版绘制方块的方法</param>
+            <param name="drawBlockSize">绘制方块大小</param>
+            <param name="drawBlockColor">绘制方块颜色</param>
+        </member>
+        <member name="M:Game.ModLoader.OnProjectileFlyOutOfLoadedChunks(Game.Projectile)">
+            <summary>
+            射弹离开加载区块的时候执行
+            </summary>
+            <param name="projectile"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnPickableDraw(Game.Pickable,Game.SubsystemPickables,Game.Camera,System.Int32,System.Boolean@,System.Single@,Engine.Color@)">
+            <summary>
+            绘制掉落物的时候执行
+            </summary>
+            <param name="pickable"></param>
+            <param name="subsystemPickables"></param>
+            <param name="camera"></param>
+            <param name="drawOrder"></param>
+            <param name="shouldDrawBlock">是否执行原版绘制方块的方法</param>
+            <param name="drawBlockSize"></param>
+            <param name="drawBlockColor"></param>
+        </member>
+        <member name="M:Game.ModLoader.UpdateComponentBody(Game.ComponentBody,System.Single,System.Boolean,System.Boolean@)">
+            <summary>
+            执行动物的Update操作。为防止多次覆盖更新，当多个mod试图执行的时候，只有一个mod能够执行，其他mod会返回Exception。
+            </summary>
+            <param name="componentBody"></param>
+            <param name="dt">动物位置</param>
+            <param name="skipVanilla">跳过原版的更新操作</param>
+            <param name="skippedByOtherMods">前面的mod已经执行了带skip操作的Update</param>
+        </member>
+        <member name="M:Game.ModLoader.BodyCountInRaycast(Game.ComponentBody,Engine.Ray3,System.Boolean@)">
+            <summary>
+            计算动物在Raycast下的表现。输出null表示这个body不计入Raycast结果；输出一个具体的数值表示Raycast计算出来的距离。
+            </summary>
+            <param name="componentBody"></param>
+            <param name="ray">动物位置</param>
+            <param name="skip">原版计算出来的强度</param>
+        </member>
+        <member name="M:Game.ModLoader.OnMovingBlockSetAdded(Game.SubsystemMovingBlocks.MovingBlockSet@,Game.SubsystemMovingBlocks,System.Boolean@,System.Boolean@)">
+            <summary>
+            在添加移动方块时触发
+            </summary>
+            <param name="movingBlockSet"></param>
+            <param name="subsystemMovingBlocks"></param>
+            <param name="testCollision">对应原方法的TestCollision部分</param>
+            <param name="doNotAdd">取消添加移动方块</param>
+        </member>
+        <member name="M:Game.ModLoader.OnMovingBlockSetRemoved(Game.IMovingBlockSet,Game.SubsystemMovingBlocks)">
+            <summary>
+            移除移动方块时触发
+            </summary>
+            <param name="movingBlockSet"></param>
+            <param name="subsystemMovingBlocks"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnMovingBlockSetUpdate(Game.IMovingBlockSet,Game.SubsystemMovingBlocks,System.Boolean,System.Boolean@)">
+            <summary>
+            在移动方块更新时触发
+            </summary>
+            <param name="movingBlockSet"></param>
+            <param name="subsystemMovingBlocks"></param>
+            <param name="skippedByOtherMods">是否已被其他模组抢先执行更新</param>
+            <param name="skipVanilla">是否跳过原版执行更新（抢先更新）</param>
+        </member>
+        <member name="M:Game.ModLoader.OnProjectileAdded(Game.SubsystemProjectiles,Game.Projectile@,TemplatesDatabase.ValuesDictionary)">
+            <summary>
+            游戏中添加射弹时触发
+            </summary>
+            <param name="subsystemProjectiles"></param>
+            <param name="projectile"></param>
+            <param name="loadValuesDictionary">如果是加载世界过程中首次添加，那么会提供该射弹的相关ValuesDictionary；如果是游戏进行过程中添加，则为null</param>
+        </member>
+        <member name="M:Game.ModLoader.OnPickableAdded(Game.SubsystemPickables,Game.Pickable@,TemplatesDatabase.ValuesDictionary)">
+            <summary>
+            游戏中添加掉落物时触发
+            </summary>
+            <param name="subsystemPickables"></param>
+            <param name="pickable"></param>
+            <param name="loadValuesDictionary">如果是加载世界过程中首次添加，那么会提供该射弹的相关ValuesDictionary；如果是游戏进行过程中添加，则为null</param>
+        </member>
+        <member name="M:Game.ModLoader.SaveProjectile(Game.SubsystemProjectiles,Game.Projectile,TemplatesDatabase.ValuesDictionary@)">
+            <summary>
+            保存世界时，存储射弹信息
+            </summary>
+            <param name="subsystemProjectiles"></param>
+            <param name="projectile"></param>
+            <param name="valuesDictionary">存储射弹信息的ValuesDictionaey</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Game.ModLoader.SavePickable(Game.SubsystemPickables,Game.Pickable,TemplatesDatabase.ValuesDictionary@)">
+            <summary>
+            保存世界时，存储掉落物信息
+            </summary>
+            <param name="subsystemPickables"></param>
+            <param name="pickable"></param>
+            <param name="valuesDictionary">存储掉落物信息的ValuesDictionary</param>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Game.ModLoader.OnBlockDug(Game.ComponentMiner,Game.BlockPlacementData,System.Int32,System.Int32@,System.Boolean@,System.Int32@)">
+            <summary>
+            在方块被挖掘完毕时执行
+            </summary>
+            <param name="componentMiner"></param>
+            <param name="digValue"></param>
+            <param name="DurabilityReduction">挖掘方块所消耗工具的耐久</param>
+            <param name="mute">挖掘方块是否取消播放音效</param>
+            <param name="PlayerDataDugAdd">是否增加玩家统计信息的挖掘方块计数</param>
+        </member>
+        <member name="M:Game.ModLoader.ChangeGameTimeDelta(Game.SubsystemTime,System.Single@)">
+            <summary>
+            改变SubsystemTime的时间推移速度，偏向底层，一般开发者不必了解
+            </summary>
+            <param name="subsystemTime"></param>
+            <param name="dt"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnIUpdateableAddOrRemove(Game.SubsystemUpdate,Game.IUpdateable,System.Boolean,System.Boolean,System.Boolean@)">
+            <summary>
+            在IUpdateable添加或删除时执行，用于模组接管IUpdateable的更新行为
+            （如恒泰模组将动物放在多线程中进行更新，降低怪物数量多导致的卡顿）
+            </summary>
+            <param name="subsystemUpdate"></param>
+            <param name="updateable"></param>
+            <param name="ToAdd1OrRemove0">这个IUpdateable是准备添加的，该变量为1；这个IUpdateable是准备移除的，该变量为0</param>
+            <param name="skippedByOtherMods">是否已经被其他模组接管</param>
+            <param name="skip">宣布接管，则不会被原版的SubsystemUpdate执行Update()</param>
+        </member>
+        <member name="M:Game.ModLoader.OnIDrawableAdded(Game.SubsystemDrawing,Game.IDrawable,System.Boolean,System.Boolean@)">
+            <summary>
+            在IDrawable添加或删除时执行，用于模组接管IDrawable的绘制行为
+            </summary>
+            <param name="subsystemDrawing"></param>
+            <param name="drawable"></param>
+            <param name="skippedByOtherMods">是否已经被其他模组接管</param>
+            <param name="skip">宣布接管，该IDrawable不会放入SubsystemDrawing.m_drawbles</param>
+        </member>
+        <member name="M:Game.ModLoader.OnFurnitureDesigned(Game.FurnitureDesign,System.Boolean,System.Int32@,System.Boolean@,System.Int32@)">
+            <summary>
+            在创建家具时执行
+            </summary>
+            <param name="furnitureDesign"></param>
+            <param name="designedFromExistingFurniture">是否从已有家具方块创建，通常用于mod禁止家具复制</param>
+            <param name="pickableCount">产生的掉落物数量</param>
+            <param name="destroyDesignBlocks">是否移除搭建的建筑原型</param>
+            <param name="toolDamageCount">家具锤消耗的耐久量，如果家具锤剩余耐久不足以支持消耗量，则玩家无法创建家具并弹出提示</param>
+        </member>
+        <member name="M:Game.ModLoader.OnInventorySlotWidgetDefined(Game.InventorySlotWidget,System.Collections.Generic.List{Game.Widget}@)">
+            <summary>
+            在创建InventorySlotWidget时执行，可以增加元素
+            </summary>
+            <param name="inventorySlotWidget"></param>
+            <param name="childrenWidgetsToAdd">创建InventorySlotWidget时，返回增加的子Widget</param>
+        </member>
+        <member name="M:Game.ModLoader.InventorySlotWidgetMeasureOverride(Game.InventorySlotWidget,Engine.Vector2)">
+            <summary>
+            绘制物品格子的耐久条、食物条等元素
+            </summary>
+            <param name="inventorySlotWidget"></param>
+            <param name="parentAvailableSize">其父widget的大小</param>
+        </member>
+        <member name="M:Game.ModLoader.HandleMoveInventoryItem(Game.InventorySlotWidget,Game.IInventory,System.Int32,Game.IInventory,System.Int32,System.Int32@,System.Boolean@)">
+            <summary>
+            当移动物品时执行。从sourceInventory的第sourceSlotIndex个格子，移动count个物品，到targetInventory的第targetSlotIndex个格子
+            </summary>
+            <param name="inventorySlotWidget"></param>
+            <param name="count">留给后面模组和原版处理物品的数量</param>
+            <param name="moved">是否完成移动操作，注意这个不影响跳过原版处理</param>
+        </member>
+        <member name="M:Game.ModLoader.HandleInventoryDragProcess(Game.InventorySlotWidget,Game.IInventory,System.Int32,Game.IInventory,System.Int32,System.Int32@)">
+            <summary>
+            在InventorySlotWidget.HandleDragDrop时执行，先执行物品的修改操作
+            （比如原版火药拖到枪身上时执行上膛操作）
+            </summary>
+            <param name="inventorySlotWidget">目标格子的InventorySlotWidget</param>
+            <param name="sourceInventory"></param>
+            <param name="sourceSlotIndex"></param>
+            <param name="targetInventory"></param>
+            <param name="targetSlotIndex"></param>
+            <param name="ProcessCapacity">目标格子接受物品的数量。设置为不大于0的数相当于跳过原版逻辑</param>
+        </member>
+        <member name="M:Game.ModLoader.HandleInventoryDragMove(Game.InventorySlotWidget,Game.IInventory,System.Int32,Game.IInventory,System.Int32,System.Boolean,System.Boolean@)">
+            <summary>
+            在InventorySlotWidget.HandleDragDrop时执行，如果物品没有修改操作，则执行移动物品操作
+            </summary>
+            <param name="inventorySlotWidget">目标格子的InventorySlotWidget</param>
+            <param name="sourceInventory"></param>
+            <param name="sourceSlotIndex"></param>
+            <param name="targetInventory"></param>
+            <param name="targetSlotIndex"></param>
+            <param name="skippedByOtherMods">执行逻辑是否已经被其他模组跳过</param>
+            <param name="skip">跳过原版的执行逻辑</param>
+        </member>
+        <member name="M:Game.ModLoader.OnPlayerControlSteed(Game.ComponentPlayer,System.Boolean,System.Boolean@)">
+            <summary>
+            在玩家骑上坐骑时每帧执行，用于调整玩家骑行动物时的控制逻辑
+            </summary>
+            <param name="componentPlayer"></param>
+            <param name="skippedByOtherMods">是否已经被其他模组跳过逻辑</param>
+            <param name="skipVanilla">跳过原版执行操作</param>
+        </member>
+        <member name="M:Game.ModLoader.OnPlayerControlBoat(Game.ComponentPlayer,System.Boolean,System.Boolean@)">
+            <summary>
+            在玩家乘坐船时每帧执行，用于调整玩家乘船时的控制逻辑
+            </summary>
+            <param name="componentPlayer"></param>
+            <param name="skippedByOtherMods">是否已经被其他模组跳过逻辑</param>
+            <param name="skipVanilla">跳过原版执行操作</param>
+        </member>
+        <member name="M:Game.ModLoader.OnPlayerControlOtherMount(Game.ComponentPlayer,System.Boolean,System.Boolean@)">
+            <summary>
+            在玩家乘坐船、动物以外的物体时每帧执行，用于控制玩家骑模组坐骑的控制魔力
+            </summary>
+            <param name="componentPlayer"></param>
+            <param name="skippedByOtherMods">是否已经被其他模组跳过逻辑</param>
+            <param name="skipVanilla">跳过其他模组执行操作</param>
+        </member>
+        <member name="M:Game.ModLoader.OnPlayerControlWalk(Game.ComponentPlayer,System.Boolean,System.Boolean@)">
+            <summary>
+            当玩家既不在坐骑上，也不在船上时执行，用于控制玩家行走的控制逻辑
+            </summary>
+            <param name="componentPlayer"></param>
+            <param name="skippedByOtherMods">是否已经被其他模组跳过逻辑</param>
+            <param name="skipVanilla">跳过原版执行操作</param>
+        </member>
+        <member name="M:Game.ModLoader.OnPlayerInputInteract(Game.ComponentPlayer,System.Boolean@,System.Double@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            当玩家输入交互逻辑时执行的操作
+            </summary>
+            <param name="componentPlayer"></param>
+            <param name="playerOperated">为true则停止之后的挖掘、攻击等操作</param>
+            <param name="timeIntervalLastActionTime">距离上一次触发该操作距离的时长</param>
+            <param name="priorityUse">控制使用优先级，使用优先级小于等于0则禁止玩家使用手中物品</param>
+            <param name="priorityInteract">控制交互优先级，交互优先级小于等于0则禁止玩家交互方块</param>
+            <param name="priorityPlace">控制放置优先级，放置优先级小于等于0则禁止玩家放置方块</param>
+        </member>
+        <member name="M:Game.ModLoader.UpdatePlayerInputAim(Game.ComponentPlayer,System.Boolean,System.Boolean@,System.Single@,System.Boolean,System.Boolean@)">
+            <summary>
+            在玩家正在瞄准时执行
+            </summary>
+            <param name="componentPlayer"></param>
+            <param name="aiming">是否正在瞄准</param>
+            <param name="playerOperated">为true则停止之后的挖掘、攻击等操作</param>
+            <param name="timeIntervalAim">和上一次执行瞄准操作，要求的最小时间间隔</param>
+            <param name="skippedByOtherMods">是否已经被其他模组跳过逻辑</param>
+            <param name="skipVanilla">跳过原版执行操作（为了模组间兼容性，建议只在手持自己模组方块时这样做）</param>
+        </member>
+        <member name="M:Game.ModLoader.OnPlayerInputHit(Game.ComponentPlayer,System.Boolean@,System.Double@,System.Single@,System.Boolean,System.Boolean@)">
+            <summary>
+            在玩家执行“攻击”动作时执行，比如恒泰左键放箭，工业左键点击船
+            </summary>
+            <param name="componentPlayer"></param>
+            <param name="playerOperated">为true则停止之后的挖掘操作</param>
+            <param name="timeIntervalHit">和上一次输入攻击操作，要求的最小时间间隔，小于该间隔时输入无效。（注意和ComponentMiner.HitInterval作区分）</param>
+            <param name="meleeAttackRange">近战攻击距离，小于等于0时表示不进行近战操作（比如手持弓时近战距离改为0，就不会拿着弓拍敌人）</param>
+            <param name="skippedByOtherMods">是否已经被其他模组跳过逻辑</param>
+            <param name="skipVanilla">跳过原版执行操作（为了模组间兼容性，建议只在手持自己模组方块时这样做）</param>
+        </member>
+        <member name="M:Game.ModLoader.UpdatePlayerInputDig(Game.ComponentPlayer,System.Boolean,System.Boolean@,System.Double@,System.Boolean,System.Boolean@)">
+            <summary>
+            在玩家执行“挖掘”动作时执行
+            </summary>
+            <param name="componentPlayer"></param>
+            <param name="digging">玩家是否正在挖掘</param>
+            <param name="playerOperated">为true则停止之后的创造模式中键选择物品等操作</param>
+            <param name="timeIntervalDig">和上一次执行挖掘操作，要求的最小时间间隔。将该值降低可以像恒泰那样极速挖掘</param>
+            <param name="skippedByOtherMods">是否已经被其他模组跳过逻辑</param>
+            <param name="skipVanilla">跳过原版执行操作（为了模组间兼容性，建议只在手持自己模组方块时这样做）</param>
+        </member>
+        <member name="M:Game.ModLoader.OnPlayerInputDrop(Game.ComponentPlayer,System.Boolean,System.Boolean@)">
+            <summary>
+            在玩家电脑上“按Q释放剑弃”时执行
+            </summary>
+            <param name="componentPlayer"></param>
+            <param name="skippedByOtherMods"></param>
+            <param name="skipVanilla"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnLightningStrike(Game.SubsystemSky,Engine.Vector3@,System.Boolean@,System.Single@,System.Boolean@)">
+            <summary>
+            在闪电劈下时执行
+            </summary>
+            <param name="subsystemSky"></param>
+            <param name="targetPosition">闪电劈下的位置</param>
+            <param name="strike">是否能成功执行</param>
+            <param name="explosionPressure">闪电的爆炸威力</param>
+            <param name="setBodyOnFire">是否点燃目标</param>
+        </member>
+        <member name="M:Game.ModLoader.OnTerrainBrushesCreated">
+            <summary>
+            用于调整原版已有矿物、水域、植物等地形地貌的生成，例如减少原版矿物生成量
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.FindCoarseSpawnPosition(Game.ITerrainContentsGenerator,Engine.Vector3@)">
+            <summary>
+            在创建世界时寻找玩家的初步生成大致位置
+            </summary>
+            <param name="spawnPosition">玩家初步生成大致位置</param>
+        </member>
+        <member name="M:Game.ModLoader.OnChaseBehaviorAttacked(Game.ComponentChaseBehavior,System.Single,System.Single@,System.Boolean@,System.Boolean@)">
+            <summary>
+            在动物执行近战攻击命中目标时执行
+            </summary>
+            <param name="componentChaseBehavior"></param>
+            <param name="chaseTimeBefore">在攻击之前的剩余追逐时间</param>
+            <param name="chaseTime">在攻击之后的剩余追逐时间</param>
+            <param name="hitBody">是否能够攻击</param>
+            <param name="playAttackSound">是否发出攻击音效</param>
+        </member>
+        <member name="M:Game.ModLoader.OnChaseBehaviorAttackFailed(Game.ComponentChaseBehavior,System.Single@)">
+            <summary>
+            在动物执行近战攻击没有命中目标时执行
+            </summary>
+            <param name="componentChaseBehavior"></param>
+            <param name="chaseTime">在攻击之后的剩余追逐时间</param>
+        </member>
+        <member name="M:Game.ModLoader.CalculateFallDamage(Game.ComponentHealth,System.Single@)">
+            <summary>
+            计算动物的坠落伤害
+            </summary>
+            <param name="componentHealth">生物的ComponentHealth，至于坠落速度等信息则从ComponentHealth出发寻找</param>
+            <param name="damage">坠落伤害</param>
+        </member>
+        <member name="M:Game.ModLoader.OnLocomotionStopped(Game.ComponentLocomotion,System.Boolean@)">
+            <summary>
+            在动物晕眩或死亡时执行移动
+            </summary>
+            <param name="componentLocomotion"></param>
+            <param name="fallsOnDeathOrStun">在晕眩或死亡时是否坠落</param>
+        </member>
+        <member name="M:Game.ModLoader.OnComponentLocomotionLoaded(Game.ComponentLocomotion,System.Single@,System.Single@,System.Single@,System.Boolean@)">
+            <summary>
+            在ComponentLocomotion加载时执行
+            </summary>
+            <param name="componentLocomotion"></param>
+            <param name="mobWalkSpeedFactor">非玩家生物的移速乘数</param>
+            <param name="mobFlySpeedFactor">非玩家生物的飞行速度乘数</param>
+            <param name="mobSwimSpeedFactor">非玩家生物的游泳速度乘数</param>
+            <param name="disableCreativeFlyInSurvivalMode">是否在生存模式中停止创造飞行（通常发生在创造模式切换到生存模式中）</param>
+        </member>
+        <member name="M:Game.ModLoader.OnDispenserDispense(Game.ComponentDispenser,Game.Pickable@,System.Int32@)">
+            <summary>
+            在发射器投掷物品时执行
+            </summary>
+            <param name="componentDispenser">该发射器的Component</param>
+            <param name="pickable">要发射的掉落物</param>
+            <param name="RemoveSlotCount">移除发射器物品栏中物品数量</param>
+        </member>
+        <member name="M:Game.ModLoader.OnDispenserShoot(Game.ComponentDispenser,Game.Projectile@,System.Boolean@,System.Int32@)">
+            <summary>
+            在发射器弹射物品时执行
+            </summary>
+            <param name="componentDispenser">该发射器的Component</param>
+            <param name="projectile">要发射的弹射物</param>
+            <param name="canDispensePickable">发射失败时，是否以掉落物的方式发射（即使不发射也会消耗）</param>
+            <param name="RemoveSlotCount">移除发射器物品栏中物品数量</param>
+        </member>
+        <member name="M:Game.ModLoader.DispenserChooseItemToDispense(Game.ComponentDispenser,System.Int32@,System.Int32@,System.Boolean@)">
+            <summary>
+            发射器选择消耗哪一个物品进行发射
+            </summary>
+            <param name="componentDispenser"></param>
+            <param name="slot">选择消耗哪一个格子的物品</param>
+            <param name="value">选择发射什么物品</param>
+            <param name="chosen">是否已经选择。若已经选择，则会跳过后面模组中执行。为了兼容性，仅推荐发射器在有自己模组方块的时候才执行</param>
+        </member>
+        <member name="M:Game.ModLoader.LoadWorldInfoWidget(Game.WorldInfo,System.Xml.Linq.XElement,Game.ContainerWidget@)">
+            <summary>
+            在世界选择列表时，调整存档的外观
+            </summary>
+            <param name="worldInfo">世界信息</param>
+            <param name="savedWorldItemNode">存储世界信息的XElement</param>
+            <param name="worldInfoWidget">要修改的Widget</param>
+        </member>
+        <member name="M:Game.ModLoader.EditBlockDescriptionScreen(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            在方块介绍页面中，增加或减少方块的属性字段
+            </summary>
+            <param name="blockProperties"></param>
+        </member>
+        <member name="M:Game.ModLoader.EditRecipeScreenWidget(Game.RecipaediaRecipesScreen)">
+            <summary>
+            在合成表页面时每帧更新时，编辑该页面
+            </summary>
+            <param name="screen"></param>
+        </member>
+        <member name="M:Game.ModLoader.UpdateCreaturePropertiesInBestiaryDescriptionScreen(Game.BestiaryDescriptionScreen,Game.BestiaryCreatureInfo,TemplatesDatabase.ValuesDictionary)">
+            <summary>
+            在生物图鉴页面每帧更新时，编辑该页面
+            </summary>
+            <param name="bestiaryDescriptionScreen"></param>
+            <param name="bestiaryCreatureInfo">该生物的基础信息</param>
+            <param name="entityValuesDictionary">该生物在Database中的ValuesDictionary</param>
+        </member>
+        <member name="M:Game.ModLoader.LoadCreatureInfoInBestiaryScreen(Game.BestiaryScreen,Game.ContainerWidget,Game.BestiaryCreatureInfo,TemplatesDatabase.ValuesDictionary)">
+            <summary>
+            在生物图鉴目录列表更新该条目时，编辑该条目
+            </summary>
+            <param name="bestiaryScreen"></param>
+            <param name="creatureInfoWidget">可以更改的生物信息Widget</param>
+            <param name="bestiaryCreatureInfo">该生物的基础信息</param>
+            <param name="entityValuesDictionary">该生物在Database中的ValuesDictioanry</param>
+        </member>
+        <member name="M:Game.ModLoader.ResetOptionsForNonCreativeMode(Game.WorldSettings,Game.EnvironmentBehaviorMode,Game.TimeOfDayMode,System.Boolean,System.Boolean)">
+            <summary>
+            在进行世界设置时，如果不是创造模式，则会修改设定
+            </summary>
+            <param name="worldSettings">要修改的世界设置</param>
+            <param name="environmentBehaviorModeBefore"></param>
+            <param name="timeOfDayModeBefore"></param>
+            <param name="areWeatherEffectsEnabledBefore"></param>
+            <param name="areSurvivalMechanicsEnabledBefore"></param>
+        </member>
+        <member name="M:Game.ModLoader.CraftingRecipesManagerInitialize(System.Collections.Generic.List{Game.CraftingRecipe},System.Boolean@)">
+            <summary>
+            在配方表加载的时候执行，用于删除原版配方
+            </summary>
+            <param name="recipes">已经加载的配方</param>
+            <param name="sort">是否在删除后重新排序</param>
+        </member>
+        <member name="M:Game.ModLoader.PlayInGameMusic">
+            <summary>
+            在游戏游玩过程中时放音乐
+            </summary>
+        </member>
+        <member name="M:Game.ModLoader.UpdateDeathCameraWidget(Game.PlayerData,System.Boolean@,System.Boolean@)">
+            <summary>
+            在更新玩家死亡界面时执行
+            </summary>
+            <param name="playerData">具体死者</param>
+            <param name="disableVanillaTapToRespawnAction">是否阻止原版点击任意键就执行复活等下一步的操作</param>
+            <param name="respawn">是否复活</param>
+        </member>
+        <member name="M:Game.ModLoader.OnComponentBodyExplodedStart(Game.ComponentBody,Engine.Vector3,System.Single,System.Single@)">
+            <summary>
+            在爆炸开始，计算动物摇晃程度时执行。
+            为了尽可能确保兼容性，建议只对属于自己模组的生物进行接管编辑
+            </summary>
+            <param name="componentBody">将要摇晃的动物</param>
+            <param name="explosionCenter">爆炸中心地点</param>
+            <param name="explosionPressure">爆炸强度</param>
+            <param name="shakeStrength">动物摇晃的强度</param>
+        </member>
+        <member name="M:Game.ModLoader.GrowPlant(Game.SubsystemPlantBlockBehavior,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean@)">
+            <summary>
+            在游戏执行植物生长判定时执行，为保证良好兼容性，建议只在处理属于自己模组的方块时改变控制
+            </summary>
+            <param name="subsystemPlantBlockBehavior">子系统，便于定位SubsystemTerrain等必要组件</param>
+            <param name="x">植物的坐标x</param>
+            <param name="y">植物的坐标y</param>
+            <param name="z">植物的坐标z</param>
+            <param name="pollPass">用途不确定</param>
+            <param name="skipVanilla">是否跳过原版的执行进程，注意本接口不能跳过其他模组的执行进程</param>
+        </member>
+        <member name="M:Game.ModLoader.OnProjectileTurnIntoPickable(Game.Projectile,Game.Pickable@)">
+            <summary>
+            射弹转化为掉落物时执行
+            </summary>
+            <param name="projectile">即将被转化并删除的射弹</param>
+            <param name="pickable">即将加入的掉落物</param>
+        </member>
+        <member name="M:Game.ModLoader.EntityComponentsInitialized(GameEntitySystem.Entity,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.Int32,GameEntitySystem.Component}})">
+            <summary>
+            在实体创建时执行，可用于移除实体的特定组件
+            </summary>
+            <param name="entity">被创建的实体</param>
+            <param name="componentList">这个实体将会拥有的Component，KeyValuePair的第一个表示Component的加载顺序编号，第二个表示实体的Component</param>
+        </member>
+        <member name="M:Game.ModLoader.ProjectBeforeSubsystemsAndEntitiesLoad(GameEntitySystem.Project)">
+            <summary>
+            游戏Project创建时执行，可用于移除Subsystem、Entity、Entity.Component
+            </summary>
+            <param name="project"></param>
+        </member>
+        <member name="M:Game.ModLoader.OnScreenEntered(Game.Screen,System.Object[])">
+            <summary>
+            进入Screen时执行
+            </summary>
+            <param name="screen">进入的Screen</param>
+            <param name="screenParameters">进入Screen时传入的参数</param>
+        </member>
+        <member name="M:Game.ModLoader.OnScreenLeaved(Game.Screen)">
+            <summary>
+            离开Screen时执行
+            </summary>
+            <param name="screen">离开的Screen</param>
+        </member>
+        <member name="M:Game.ModLoader.BeforeWidgetUpdate(Game.Widget)">
+            <summary>
+            在Widget即将执行Update()时执行
+            </summary>
+            <param name="widget"></param>
+        </member>
+        <member name="M:Game.ModLoader.AfterWidgetUpdate(Game.Widget)">
+            <summary>
+            在Widget完成Update()后立即执行
+            </summary>
+            <param name="widget"></param>
+        </member>
+        <member name="M:Game.ModLoader.ChaseBehaviorScoreTarget(Game.ComponentChaseBehavior,Game.ComponentCreature,System.Single@)">
+            <summary>
+            生物在选择追捕对象时，对被追捕对象的评分。评分越高，则会被选中。
+            </summary>
+            <param name="chaseBehavior"></param>
+            <param name="creatureToBeTarget">被评估的对象</param>
+            <param name="score">给出的评分</param>
+        </member>
+        <member name="M:Game.ModLoader.DecideLoot(Game.ComponentLoot,System.Collections.Generic.List{Game.BlockDropValue})">
+            <summary>
+            修改生物的战利品。
+            建议不要清空dropValues推倒重来，影响模组兼容性。
+            </summary>
+            <param name="componentLoot"></param>
+            <param name="dropValues">其中包含所有的战利品掉落物的方块值和数量</param>
+        </member>
+        <member name="M:Game.ModLoader.OnMainMenuScreenCreated(Game.MainMenuScreen,Game.StackPanelWidget,Game.StackPanelWidget)">
+            <summary>
+            在主界面初始化后执行，你可以通过这个给主界面加些你想要的按钮或者文字等
+            </summary>
+            <param name="mainMenuScreen">初始化完毕后的主界面</param>
+            <param name="leftBottomBar">主界面左下角的按钮栏，里面有着API的切换语言和资源管理按钮</param>
+            <param name="rightBottomBar">主界面右下角的按钮栏，Mod作者们可以在这里面放入想要的按钮（例如Mod设置按钮、Mod作者介绍按钮等）</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Game.ModLoader.OnFactorsGenerate(Game.ComponentFactors)" -->
+        <member name="T:Game.Properties.Resources">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Game.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Game.Properties.Resources.Culture">
+            <summary>
+              重写当前线程的 CurrentUICulture 属性，对
+              使用此强类型资源类的所有资源查找执行重写。
+            </summary>
+        </member>
+        <member name="M:Game.SubsystemPlantBlockBehavior.OnNeighborBlockChanged(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            该方法进行封装，不再允许覆盖
+            添加新的放置植物的逻辑：
+            如果是添加新植物，则
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="z"></param>
+            <param name="neighborX"></param>
+            <param name="neighborY"></param>
+            <param name="neighborZ"></param>
+        </member>
+        <member name="T:Game.TextBoxWidget">
+            <summary>
+            <para>
+            Survivalcraft Api 所添加的文本框
+            （支持 Windows IME 输入法, Android IME 适配待开发）。
+            </para>
+            <para>
+            A text box widget that added by Survivalcraft Api
+            (Support Windows IME, and Android IME support is pending development).
+            </para>
+            </summary>
+        </member>
+        <member name="F:Game.TextBoxWidget.JustOpened">
+            <summary>
+            <para>
+            已弃用。
+            </para>
+            <para>
+            Deprecated.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.Description">
+            <summary>
+            <para>
+            Android 文本框的 Description。
+            </para>
+            <para>
+            This is the description of android text box.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.Title">
+            <summary>
+            <para>
+            Android 文本框的 Title。
+            </para>
+            <para>
+            This is the title of android text box.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Game.TextBoxWidget.m_caretPosition">
+            <summary>
+            <para>
+            旧版文本框的光标位置，现版本不再使用。
+            </para>
+            <para>
+            Old caret position, now is deprecated.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CaretPosition">
+            <summary>
+            <para>
+            <see cref="T:Game.LegacyTextBoxWidget"/> 里的旧版 <see cref="P:Game.TextBoxWidget.Caret"/> 属性，现版本不再使用。
+            </para>
+            <para>
+            Old property of <see cref="P:Game.TextBoxWidget.Caret"/> in <see cref="T:Game.LegacyTextBoxWidget"/>, now is deprecated.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Game.TextBoxWidget.m_hasFocus">
+            <summary>
+            <para>
+            <see cref="P:Game.LegacyTextBoxWidget.HasFocus"/> 的后台字段，现版本不再使用，请用 <see cref="P:Game.TextBoxWidget.HasFocus"/> 替代。
+            </para>
+            <para>
+            The backend field of <see cref="P:Game.LegacyTextBoxWidget.HasFocus"/>, now is deprecated, use <see cref="P:Game.TextBoxWidget.HasFocus"/> instead.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Game.TextBoxWidget.m_size">
+            <summary>
+            <para>
+            <see cref="P:Game.LegacyTextBoxWidget.Size"/> 的后台字段，现版本不再使用。
+            </para>
+            <para>
+            The backend field of old <see cref="P:Game.LegacyTextBoxWidget.Size"/>, now is deprecated.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Game.TextBoxWidget.m_focusStartTime">
+            <summary>
+            <para>
+            等效于 <see cref="P:Game.TextBoxWidget.FocusStartTime"/>，
+            现版本不再使用，请用 <see cref="P:Game.TextBoxWidget.FocusStartTime"/> 替代。
+            </para>
+            <para>
+            Is the same as <see cref="P:Game.TextBoxWidget.FocusStartTime"/>,
+            now is deprecated, use <see cref="P:Game.TextBoxWidget.FocusStartTime"/> instead.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.SelectionString">
+            <summary>
+            <para>
+            选中的字符，当 <see cref="P:Game.TextBoxWidget.SelectionLength"/> 为 0 时返回 null。
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.FullText">
+            <summary>
+            <para>
+            文本框里包括 <see cref="P:Game.TextBoxWidget.Text"/> 和 <see cref="P:Game.TextBoxWidget.CompositionText"/> 的完整文本。
+            </para>
+            <para>
+            The full text of this text box, including <see cref="P:Game.TextBoxWidget.CompositionText"/> and <see cref="P:Game.TextBoxWidget.Text"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Game.TextBoxWidget.m_text">
+            <summary>
+            <para>
+            <see cref="P:Game.TextBoxWidget.Text"/> 的后台字段，
+            不推荐直接使用，请使用 <see cref="P:Game.TextBoxWidget.Text"/>。
+            </para>
+            <para>
+            The backend field of <see cref="P:Game.TextBoxWidget.Text"/>,
+            it's not safe use it directly, please use <see cref="P:Game.TextBoxWidget.Text"/> instead.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.Text">
+            <summary>
+            <para>
+            文本框里已经输入的文本。
+            </para>
+            <para>
+            Text already inputted of this text box.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CompositionText">
+             <summary>
+             <para>
+             输入法 “组合窗” 的文本， 可能为 null。
+             </para>
+             <para>
+             仅在 Windows 平台下可用（Android 平台始终为null）。
+             </para>
+             <para>
+             IME composition text, may be null.
+            </para>
+             <para>
+             Windows only (Always null on Android).
+             </para>
+             </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CompositionTextCaret">
+            <summary>
+            <para>
+            “组合窗” 中光标的位置，可被视为 <see cref="P:Game.TextBoxWidget.CompositionText"/> 的索引，
+            等效于 <see cref="P:Game.TextBoxWidget.Caret"/>，但是对应的字符串从 <see cref="P:Game.TextBoxWidget.Text"/> 变为了 <see cref="P:Game.TextBoxWidget.CompositionText"/>，
+            若需要使用相对于 <see cref="P:Game.TextBoxWidget.FullText"/> 的光标（字符索引），请将此值与 <see cref="P:Game.TextBoxWidget.Caret"/> 相加。
+            </para>
+            <para>
+            仅在 Windows 平台下可用（Android 平台始终为 0）。
+            </para>
+            <para>
+            IME composition text caret position, can be considered as the index of <see cref="P:Game.TextBoxWidget.CompositionText"/>,
+            Is the same as <see cref="P:Game.TextBoxWidget.Caret"/>, but replaces <see cref="P:Game.TextBoxWidget.Text"/> to <see cref="P:Game.TextBoxWidget.CompositionText"/>,
+            To get the index to <see cref="P:Game.TextBoxWidget.FullText"/>, add this value and <see cref="P:Game.TextBoxWidget.Caret"/>.
+            </para>
+            <para>
+            Windows only.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.Caret">
+            <summary>
+            <para>
+            光标的位置，可被视为 <see cref="P:Game.TextBoxWidget.Text"/> 的索引。
+            绘制时位置为索引对应的字符的左侧，可以与 <see cref="P:Game.TextBoxWidget.Text"/> 的长度相等（表示光标在文本末尾）。
+            </para>
+            <para>
+            Text caret, can be considered as the index of <see cref="P:Game.TextBoxWidget.Text"/>.
+            The caret is drawn at the left of the character that corresponds to the index.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.SelectionLength">
+            <summary>
+            <para>
+            当前选中的文本长度，为 0 则表示不选择任何文本，可以小于 0.
+            </para>
+            <para>
+            The length of the selected text, 0 means no text is selected, can be less than 0.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.SelectionStarted">
+            <summary>
+            <para>
+            是否选中文本。
+            </para>
+            <para>
+            Whether the text is selected.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.ScrollStarted">
+            <summary>
+            <para>
+            是否正在滚动。（注意：仅指 Drag 引发的滚动）
+            </para>
+            <para>
+            Whether the text is scrolling.(NOTICE: Only means drag scroll)
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.FocusedTextBox">
+            <summary>
+            <para>
+            当前获得焦点的文本框。
+            </para>
+            <para>
+            The focused text box.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.FocusStartTime">
+            <summary>
+            <para>
+            最后一次获取焦点的时间（<see cref="P:Engine.Time.RealTime"/>），
+            用于绘制光标（请见<see cref="M:Game.TextBoxWidget.Draw(Game.Widget.DrawContext)"/>方法）。
+            </para>
+            <para>
+            Last focus time(<see cref="P:Engine.Time.RealTime"/>),
+            used to draw caret(see <see cref="M:Game.TextBoxWidget.Draw(Game.Widget.DrawContext)"/> method).
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.HasFocus">
+            <summary>
+            <para>
+            当前文本框是否获得焦点。
+            </para>
+            <para>
+            Whether this text box has focus.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Game.TextBoxWidget.SplitStringAt(System.String,System.Int32)">
+            <summary>
+            <para>
+            供 <see cref="T:Game.TextBoxWidget"/> 内部使用。
+            </para>
+            <para>
+            For internal use by <see cref="T:Game.TextBoxWidget"/>.
+            </para>
+            </summary>
+            <param name="str"></param>
+            <param name="splitPosition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Game.TextBoxWidget.EnterCharacter(System.Char,System.Int32,System.Boolean)">
+            <summary>
+            <para>
+            插入字符。
+            </para>
+            <para>
+            Enter character.
+            </para>
+            </summary>
+            <param name="value">
+                <para>
+                插入的字符。
+                </para>
+                <para>
+                Character to enter.
+                </para>
+            </param>
+            <param name="position">
+                <para>
+                插入的位置，默认为 -1 （-1 表示插入到光标位置）。
+                </para>
+                <para>
+                Position to enter, default is -1 (-1 means insert at caret position)
+                </para>
+            </param>
+            <param name="moveCaret">
+                <para>
+                是否移动光标。
+                </para>
+                <para>
+                Whether to move caret.
+                </para>
+            </param>
+        </member>
+        <member name="M:Game.TextBoxWidget.DeleteSelection(System.Boolean)">
+            <summary>
+            <para>
+            删除选中的字符。
+            </para>
+            <para>
+            Delete selected text.
+            </para>
+            <param name="invokeTextChanged">
+                <para>
+                如果为 true，调用 <see cref="E:Game.TextBoxWidget.TextChanged"/> 事件。
+                </para>
+                <para>
+                If true, invoke <see cref="E:Game.TextBoxWidget.TextChanged"/> event.
+                </para>
+            </param>
+            </summary>
+        </member>
+        <member name="M:Game.TextBoxWidget.EnterText(System.String)">
+            <summary>
+            <para>
+            在光标后插入字符串。
+            </para>
+            </summary>
+        </member>
+        <member name="M:Game.TextBoxWidget.EnterText(System.String,System.Int32)">
+            <summary>
+            <para>
+            在指定位置插入字符串。
+            </para>
+            <para>
+            Insert string at specified position.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Game.TextBoxWidget.CharacterKindsMap">
+            <summary>
+            <para>
+            字符分类表， 用于 <see cref="M:Game.TextBoxWidget.Delete(System.Nullable{System.Char},System.Int32)"/> 方法 和 <see cref="M:Game.TextBoxWidget.BackSpace(System.Nullable{System.Char},System.Int32,System.Boolean)"/>，
+            每个元素都存储着某一类字符的所有字符。
+            </para>
+            <para>
+            Characters table for <see cref="M:Game.TextBoxWidget.Delete(System.Nullable{System.Char},System.Int32)"/> and <see cref="M:Game.TextBoxWidget.BackSpace(System.Nullable{System.Char},System.Int32,System.Boolean)"/>,
+            Every element stores all character of a character kind.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Game.TextBoxWidget.BackSpace(System.Nullable{System.Char},System.Int32,System.Boolean)">
+            <summary>
+            <para>
+            向左删除字符。
+            </para>
+            <para>
+            Delete the character on the left of the caret.
+            </para>
+            </summary>
+            <param name="character">
+                <para>
+                删除的字符，可为 null （为 null 则匹配所有字符）。
+                </para>
+                <para>
+                Character to delete, can be null (if null then match all characters).
+                </para>
+            </param>
+            <param name="count">
+                <para>
+                删除字符的数量 为 -1 则表示删除所有匹配字符
+                </para>
+                <para>
+                Number of characters to delete, if -1 then delete all matching characters.
+                </para>
+            </param>
+            <param name="moveCaret">
+                <para>
+                是否移动光标。
+                </para>
+                <para>
+                Whether to move the caret.
+                </para>
+            </param>
+        </member>
+        <member name="M:Game.TextBoxWidget.Delete(System.Nullable{System.Char},System.Int32)">
+            <summary>
+            <para>
+                向右删除字符。
+            </para>
+            <para>
+                Delete character on the right of the caret.
+            </para>
+            </summary>
+            <param name="character">
+                <para>
+                删除的字符，可为 null （为 null 则匹配所有字符）。
+                </para>
+                <para>
+                Character to delete, can be null (if null then match all characters).
+                </para>
+            </param>
+            <param name="count">
+                <para>
+                删除字符的数量 为 -1 则表示删除所有匹配字符.
+                </para>
+                <para>
+                Number of characters to delete, if -1 then delete all matching characters.
+                </para>
+            </param>
+        </member>
+        <member name="P:Game.TextBoxWidget.DragStartTime">
+            <summary>
+            <para>
+            Drag 操作开始时 <see cref="P:Engine.Time.RealTime"/> 的值。
+            </para>
+            <para>
+            Value of <see cref="P:Engine.Time.RealTime"/> when drag started.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.LastDragPosition">
+            <summary>
+            <para>
+            上一次 <see cref="M:Game.TextBoxWidget.Update"/> 方法被执行时 <see cref="P:Game.WidgetInput.Drag"/> 的值。
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.DragStartedInsideTextBox">
+            <summary>
+            <para>
+            拖拽开始时是否位于文本框内。
+            </para>
+            <para>
+            Whether the drag started inside the text box.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Game.TextBoxWidget.ShowInputMethod">
+            <summary>
+            <para>
+            显示 Windows 系统输入法
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.ShowCandidatesWindow">
+            <summary>
+            <para>
+            是否显示候选窗。
+            </para>
+            <para>
+            Whether to show the candidates window.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.IndentAsSpace">
+            <summary>
+            <para>
+            是否把输入的制表符替换为空格
+            （不会影响已经输入过的制表符）。
+            </para>
+            <para>
+            注意：此属性和 <see cref="P:Game.TextBoxWidget.SwitchTextBoxWhenTabbed"/> 冲突，二者不能同时为 true，否则只有一个生效。
+            </para>
+            <para>
+            Whether replace indent with spaces when typing
+            (doesn't change the already inputted).
+            </para>
+            <para>
+            NOTICE: This property conflicts with <see cref="P:Game.TextBoxWidget.SwitchTextBoxWhenTabbed"/>,
+            they cannot be set to true at the same time, otherwise only one will take effect.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.IndentWidth">
+            <summary>
+            <para>
+            当 <see cref="P:Game.TextBoxWidget.IndentAsSpace"/> 为 true 时，输入的制表符会被替换为空格，空格数量由 <see cref="P:Game.TextBoxWidget.IndentWidth"/> 决定。
+            </para>
+            <para>
+            在绘制时，制表符会被视为这个数量的空格。
+            </para>
+            <para>
+            When <see cref="P:Game.TextBoxWidget.IndentAsSpace"/> is true, inputted indents will be replaced with this number of spaces.
+            </para>
+            <para>
+            When drawing, indents will be considered as this number of spaces.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Game.TextBoxWidget.m_maximumLength">
+            <summary>
+            <para>
+            <see cref="P:Game.TextBoxWidget.MaximumLength"/> 的后台字段，
+            不推荐直接使用此值，请使用 <see cref="P:Game.TextBoxWidget.MaximumLength"/>。
+            </para>
+            <para>
+            The backend field of <see cref="P:Game.TextBoxWidget.MaximumLength"/>,
+            This is not safe to use this field directly, use <see cref="P:Game.TextBoxWidget.MaximumLength"/> instead
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.MaximumLength">
+            <summary>
+            <para>
+            文本长度限制，设置此属性时会截断超过长度的文本，不可小于 0，若需要设置为无限，请使用 <see cref="F:System.Int32.MaxValue"/>。
+            </para>
+            <para>
+            Maximum length of text, the text will be cut when it is longer than this value, the value cannot be less than 0,
+            to set it to infinite, please use <see cref="F:System.Int32.MaxValue"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.PasswordMode">
+            <summary>
+            <para>
+            密码模式，开启后所有文本都会被显示为 *（组合窗除外）。
+            </para>
+            <para>
+            Password mode, all text but composition text ill be drawn as "*".
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.OverwriteMode">
+            <summary>
+            <para>
+            为 true 时，文本框中输入的字符将覆盖已有文本。
+            </para>
+            <para>
+            When true, characters inputted will overwrite existing text.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.SwitchTextBoxWhenTabbed">
+            <summary>
+            <para>
+            当用户按下 Tab 键时，是否切换到下一个文本框
+            </para>
+            <para>
+            注意：此属性和 <see cref="P:Game.TextBoxWidget.SwitchTextBoxWhenTabbed"/> 冲突，二者不能同时为 true，否则只有一个生效。
+            </para>
+            <para>
+            If true, when the user presses the tab key, the focus will be switched to the next text box.
+            </para>
+            <para>
+            NOTICE: This property conflicts with <see cref="P:Game.TextBoxWidget.SwitchTextBoxWhenTabbed"/>,
+            they cannot be set to true at the same time, otherwise only one will take effect.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.OutlineColor">
+            <summary>
+            <para>
+            文本框轮廓颜色。
+            </para>
+            <para>
+            Text box outline color.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CandidateSelectionColor">
+            <summary>
+            <para>
+            候选窗选中项颜色。
+            </para>
+            <para>
+            Candidate window selected item color.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CandidateTextColor">
+            <summary>
+            <para>
+            候选窗文本颜色。
+            </para>
+            <para>
+            Candidate window text color.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.AutoSize">
+            <summary>
+            <para>
+            如果为 true 则每帧都会由 <see cref="M:Game.TextBoxWidget.MeasureOverride(Engine.Vector2)"/> 自动确定 <see cref="P:Game.TextBoxWidget.Size"/> 的值。
+            </para>
+            <para>
+            If true, the size will be set by <see cref="M:Game.TextBoxWidget.MeasureOverride(Engine.Vector2)"/> every frame.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Game.TextBoxWidget.m_sizeValue">
+            <summary>
+            <para>
+            <see cref="P:Game.TextBoxWidget.Size"/> 的后台字段。
+            </para>
+            <para>
+            The backend field of <see cref="P:Game.TextBoxWidget.Size"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.Size">
+            <summary>
+            <para>
+            输入框大小（不一定是输入框的真实大小，真实大小请见 <see cref="P:Game.Widget.ActualSize"/>）。
+            </para>
+            <para>
+            Text box size (may not be the actual size of the text box, the actual size is <see cref="P:Game.Widget.ActualSize"/>)
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.FontSpacing">
+            <summary>
+            <para>
+            字体间距。
+            </para>
+            <para>
+            Font spacing.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.FontScale">
+            <summary>
+            <para>
+            字体缩放。
+            </para>
+            <para>
+            Font scale.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.TextureLinearFilter">
+            <summary>
+            <para>
+            如果为 true，则字体使用线性过滤。
+            </para>
+            <para>
+            If true, font will use linear texture filtering.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CandidateListOffset">
+            <summary>
+            <para>
+            候选窗位置偏移量，
+            原点为光标延长线与文本框下边缘的交点。
+            </para>
+            <para>
+            Position offset of the candidate list,
+            zero means the intersection point of the bottom outline and the extended line of caret.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CandidatesSpacing">
+            <summary>
+            <para>
+            候选词之间的间距。
+            </para>
+            <para>
+            Candidates spacing.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.Font">
+            <summary>
+            <para>
+            输入框字体。
+            </para>
+            <para>
+            Text box font.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CandidateWindowLength">
+            <summary>
+            <para>
+            候选窗显示的长度。
+            </para>
+            <para>
+            The length of the candidates window.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CandidateWindowColor">
+            <summary>
+            <para>
+            候选窗背景颜色。
+            </para>
+            <para>
+            Candidate window background color.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.InputMethodEnabled">
+            <summary>
+            <para>
+            是否启用输入法。
+            </para>
+            <para>
+            Whether to enable input method.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CandidatesList">
+            <summary>
+            <para>
+            所有候选词。
+            请结合 <see cref="P:Game.TextBoxWidget.CandidatesSelection"/> 和 <see cref="P:Game.TextBoxWidget.CandidatesPageSize"/> 以获取当前候选词页的候选词。
+            </para>
+            <para>
+            All candidates.
+            Please get current candidates page's candidates with <see cref="P:Game.TextBoxWidget.CandidatesSelection"/> and <see cref="P:Game.TextBoxWidget.CandidatesPageSize"/>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CandidatesSelection">
+            <summary>
+            <para>
+            候选窗中当前选中的词。
+            </para>
+            <para>
+            Current selected candidate.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.CandidatesPageSize">
+            <summary>
+            <para>
+            候选窗中当前候选词页大小。
+            </para>
+            <para>
+            Size of current selected candidates page.
+            </para>
+            </summary>
+        </member>
+        <member name="E:Game.TextBoxWidget.FocusLost">
+            <summary>
+            <para>
+            输入框失去焦点时触发。
+            </para>
+            <para>
+            Events will be call when text box loses focus.
+            </para>
+            </summary>
+        </member>
+        <member name="E:Game.TextBoxWidget.OnFocus">
+            <summary>
+            <para>
+            输入框获得焦点时触发。
+            </para>
+            <para>
+            Events will be call when text box gets focus.
+            </para>
+            </summary>
+        </member>
+        <member name="E:Game.TextBoxWidget.Enter">
+            <summary>
+            <para>
+            按下回车时触发。
+            </para>
+            <para>
+            Events will be call when pressing enter.
+            </para>
+            </summary>
+        </member>
+        <member name="E:Game.TextBoxWidget.Escape">
+            <summary>
+            <para>
+            按下 Escape 时触发。
+            </para>
+            <para>
+            Events will be call when pressing escape.
+            </para>
+            </summary>
+        </member>
+        <member name="E:Game.TextBoxWidget.TextChanged">
+            <summary>
+            <para>
+            文本改变时触发。
+            </para>
+            <para>
+            Events will be call when text changed.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.TextCaretPosition">
+            <summary>
+            <para>
+            光标相对于 Widget 的显示位置。
+            </para>
+            <para>
+            Position of text caret relative to widget.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Game.TextBoxWidget.FullTextCaretPosition">
+            <summary>
+            <para>
+            文本光标（包括 <see cref="P:Game.TextBoxWidget.CompositionText"/>）相对于 Widget 的显示位置。
+            </para>
+            <para>
+            Position of text caret (including <see cref="P:Game.TextBoxWidget.CompositionText"/>) relative to widget.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Game.TextBoxWidget.MeasureOverride(Engine.Vector2)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Game.Widget.DrawContext.DrawWidgetsHierarchy(Game.Widget)">
+            <summary>
+            绘制 rootWidget 及其子 Widget。
+            </summary>
+            <param name="rootWidget"></param>
+        </member>
+        <member name="M:Game.Widget.DrawContext.CollateDrawItems(Game.Widget,Engine.Rectangle)">
+            <summary>
+            根据 Widget 的层级关系 以及 Widget 的各项绘制有关的属性生成 DrawItem。
+            </summary>
+            <param name="widget">DrawItem 所属的 Widget。</param>
+            <param name="scissorRectangle">Widget 父级的 ScissorRectangle。</param>
+        </member>
+        <member name="M:Game.Widget.DrawContext.AssignDrawItemsLayers">
+            <summary>
+            指定 DrawItem 的 Layer（层级）。
+            </summary>
+        </member>
+        <member name="M:Game.Widget.DrawContext.RenderDrawItems">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Game.Widget.DrawContext.GetDrawItemFromCache">
+            <summary>
+            从缓存中获取一个 <see cref="T:Game.Widget.DrawItem"/> 实例，用于减少实例创建次数以缓解 GC 压力。
+            </summary>
+            <returns>搜索到的实例</returns>
+        </member>
+        <member name="M:Game.Widget.DrawContext.ReturnDrawItemsToCache">
+            <summary>
+            对 <see cref="T:Game.Widget.DrawItem"/> 进行复用，并存储到缓存列表内。
+            </summary>
+        </member>
+        <member name="T:Game.Widget.DrawItem">
+            <summary>
+            绘制任务，有多种类型，绘制任务会按照 <see cref="F:Game.Widget.DrawItem.Layer"/> 进行排序。
+            </summary>
+        </member>
+        <member name="F:Game.Widget.DrawItem.Layer">
+            <summary>
+            绘制任务所在的层级，值越小，绘制越靠前，绘制靠前的绘制任务会被靠后的覆盖。
+            </summary>
+        </member>
+        <member name="F:Game.Widget.DrawItem.IsOverdraw">
+            <summary>
+            是否为 Overdraw 任务，绘制任务被定义为需要绘制 Widget 时，该值决定了 <see cref="M:Game.Widget.Draw(Game.Widget.DrawContext)"/> 或 <see cref="M:Game.Widget.Overdraw(Game.Widget.DrawContext)"/> 的调用
+            （当 <see cref="F:Game.Widget.DrawItem.IsOverdraw"/> 为 true 时则调用 <see cref="M:Game.Widget.Overdraw(Game.Widget.DrawContext)"/>，否则调用 <see cref="M:Game.Widget.Draw(Game.Widget.DrawContext)"/>）。
+            </summary>
+        </member>
+        <member name="F:Game.Widget.DrawItem.Widget">
+            <summary>
+            绘制任务所属的 Widget
+            </summary>
+        </member>
+        <member name="F:Game.Widget.DrawItem.ScissorRectangle">
+            <summary>
+            绘制任务所绑定的 ScissorRectangle，可为空。
+            </summary>
+        </member>
+        <member name="M:ModsManager.HookAction(System.String,System.Func{Game.ModLoader,System.Boolean})">
+            <summary>
+            执行Hook
+            </summary>
+            <param name="HookName"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:ModsManager.RegisterHook(System.String,Game.ModLoader)">
+            <summary>
+            注册Hook
+            </summary>
+            <param name="HookName"></param>
+            <param name="modLoader"></param>
+        </member>
+        <member name="M:ModsManager.GetScmods(System.String)">
+            <summary>
+            获取所有文件
+            </summary>
+            <param name="path">文件路径</param>
+        </member>
+        <member name="M:ModsManager.StreamToBytes(System.IO.Stream)">
+            <summary>
+            将 Stream 转成 byte[]
+            </summary>
+        </member>
+        <member name="M:ModsManager.BytesToStream(System.Byte[])">
+            <summary>
+            将 byte[] 转成 Stream
+            </summary>
+        </member>
+        <member name="M:ModsManager.StreamToFile(System.IO.Stream,System.String)">
+            <summary>
+            将 Stream 写入文件
+            </summary>
+        </member>
+        <member name="M:ModsManager.FileToStream(System.String)">
+            <summary>
+            从文件读取 Stream
+            </summary>
+        </member>
+        <member name="M:ModsManager.Cal_Normal_3D(Engine.Vector3,Engine.Vector3,Engine.Vector3)">
+            <summary>
+            计算三点成面的法向量
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <param name="v3"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
